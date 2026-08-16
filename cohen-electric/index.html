@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Cohen Electric Services — Demo</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --ce-dark: #1a1f2e;
+    --ce-navy: #0d1321;
+    --ce-gold: #f5a623;
+    --ce-gold-dark: #c07d0f;
+    --ce-gold-light: #ffd07a;
+    --ce-gray: #4a5568;
+    --ce-light: #f8f9fb;
+    --ce-white: #ffffff;
+    --ce-red: #c53030;
+    --font-display: 'Oswald', sans-serif;
+    --font-body: 'Inter', sans-serif;
+  }
+  body { font-family: var(--font-body); background: var(--ce-white); color: var(--ce-dark); }
+
+  /* NAV */
+  nav {
+    background: var(--ce-navy);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 3px solid var(--ce-gold);
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ce-white);
+    letter-spacing: 0.5px;
+  }
+  .nav-logo span { color: var(--ce-gold); }
+  .nav-links { display: flex; gap: 0; }
+  .nav-links a {
+    color: #b0bec5;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 0 16px;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s, background 0.2s;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -3px;
+  }
+  .nav-links a:hover { color: var(--ce-white); border-bottom-color: var(--ce-gold); }
+  .nav-cta {
+    background: var(--ce-gold);
+    color: var(--ce-navy) !important;
+    border-radius: 4px;
+    height: 38px !important;
+    padding: 0 20px !important;
+    margin: auto 0;
+    font-weight: 600 !important;
+    border-bottom: none !important;
+  }
+  .nav-cta:hover { background: var(--ce-gold-dark); color: var(--ce-white) !important; border-bottom: none !important; }
+
+  /* HERO */
+  .hero {
+    background: var(--ce-navy);
+    position: relative;
+    overflow: hidden;
+    padding: 80px 2rem 90px;
+    text-align: center;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"><rect width="60" height="60" fill="none"/><path d="M0 60 L60 0" stroke="%23ffffff08" stroke-width="1"/></svg>') repeat;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(245,166,35,0.15);
+    border: 1px solid rgba(245,166,35,0.4);
+    color: var(--ce-gold-light);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 2px;
+    margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: 56px;
+    font-weight: 700;
+    color: var(--ce-white);
+    line-height: 1.1;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+  }
+  .hero h1 em { color: var(--ce-gold); font-style: normal; }
+  .hero p {
+    font-size: 17px;
+    color: #90a4ae;
+    max-width: 520px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+  }
+  .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--ce-gold);
+    color: var(--ce-navy);
+    border: none;
+    padding: 15px 32px;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: var(--font-display);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    border-radius: 3px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--ce-gold-dark); }
+  .btn-outline {
+    background: transparent;
+    color: var(--ce-white);
+    border: 2px solid rgba(255,255,255,0.3);
+    padding: 15px 32px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: var(--font-display);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    border-radius: 3px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--ce-gold); color: var(--ce-gold); }
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    margin-top: 60px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 40px;
+  }
+  .hero-stat {
+    padding: 0 40px;
+    border-right: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+  }
+  .hero-stat:last-child { border-right: none; }
+  .hero-stat-num {
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--ce-gold);
+  }
+  .hero-stat-label {
+    font-size: 12px;
+    color: #78909c;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* TRUST BAR */
+  .trust-bar {
+    background: var(--ce-gold);
+    padding: 14px 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ce-navy);
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+  }
+  .trust-item i { font-size: 16px; }
+
+  /* SECTIONS */
+  section { padding: 80px 2rem; }
+  .section-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ce-gold-dark);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--ce-navy);
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .section-sub {
+    font-size: 16px;
+    color: var(--ce-gray);
+    line-height: 1.7;
+    max-width: 560px;
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  /* SERVICES */
+  .services-bg { background: var(--ce-light); }
+  .services-header { text-align: center; margin-bottom: 50px; }
+  .services-header .section-sub { margin: 0 auto; }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .service-card {
+    background: var(--ce-white);
+    border: 1px solid #e2e8f0;
+    border-top: 4px solid var(--ce-gold);
+    border-radius: 4px;
+    padding: 32px 24px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+  .service-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(245,166,35,0.12);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: var(--ce-gold-dark);
+    font-size: 22px;
+  }
+  .service-card h3 {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ce-navy);
+    margin-bottom: 10px;
+  }
+  .service-card p { font-size: 14px; color: var(--ce-gray); line-height: 1.65; }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .about-img-wrap {
+    position: relative;
+  }
+  .about-img {
+    width: 100%;
+    border-radius: 4px;
+    display: block;
+    background: #e2e8f0;
+    min-height: 320px;
+    object-fit: cover;
+  }
+  .about-badge {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    background: var(--ce-gold);
+    border-radius: 4px;
+    padding: 18px 24px;
+    text-align: center;
+  }
+  .about-badge-num {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--ce-navy);
+    line-height: 1;
+  }
+  .about-badge-label { font-size: 12px; font-weight: 600; color: var(--ce-navy); opacity: 0.7; margin-top: 4px; }
+  .about-list { list-style: none; margin-top: 28px; display: flex; flex-direction: column; gap: 14px; }
+  .about-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 15px;
+    color: var(--ce-gray);
+    line-height: 1.6;
+  }
+  .about-list li i { color: var(--ce-gold-dark); font-size: 18px; margin-top: 1px; flex-shrink: 0; }
+
+  /* REVIEWS */
+  .reviews-bg { background: var(--ce-navy); }
+  .reviews-bg .section-title { color: var(--ce-white); }
+  .reviews-bg .section-label { color: var(--ce-gold); }
+  .reviews-header { text-align: center; margin-bottom: 48px; }
+  .reviews-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  .reviews-grid .review-card {
+    flex: 0 1 calc(33.333% - 14px);
+    min-width: 240px;
+  }
+  .review-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 4px;
+    padding: 28px 24px;
+  }
+  .review-stars { color: var(--ce-gold); font-size: 14px; margin-bottom: 14px; letter-spacing: 2px; }
+  .review-text { font-size: 14px; color: #b0bec5; line-height: 1.7; margin-bottom: 20px; }
+  .review-author { font-size: 13px; font-weight: 600; color: var(--ce-white); }
+  .review-role { font-size: 12px; color: #607d8b; margin-top: 2px; }
+
+  /* SERVICE AREAS */
+  .areas-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .area-pill {
+    background: var(--ce-light);
+    border: 1px solid #e2e8f0;
+    border-radius: 3px;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ce-dark);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .area-pill i { font-size: 14px; color: var(--ce-gold-dark); }
+
+  /* HOURS */
+  .hours-contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .hours-table { width: 100%; border-collapse: collapse; margin-top: 28px; }
+  .hours-table tr { border-bottom: 1px solid #e2e8f0; }
+  .hours-table td { padding: 12px 0; font-size: 15px; color: var(--ce-gray); }
+  .hours-table td:last-child { text-align: right; font-weight: 500; color: var(--ce-dark); }
+  .hours-table .closed { color: #a0aec0; }
+
+  /* CONTACT FORM */
+  .contact-form { display: flex; flex-direction: column; gap: 16px; margin-top: 28px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group label { font-size: 13px; font-weight: 500; color: var(--ce-dark); }
+  .form-group input, .form-group select, .form-group textarea {
+    border: 1px solid #d1d9e0;
+    border-radius: 4px;
+    padding: 10px 14px;
+    font-size: 14px;
+    font-family: var(--font-body);
+    color: var(--ce-dark);
+    background: var(--ce-white);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--ce-gold);
+  }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+  .form-submit {
+    background: var(--ce-navy);
+    color: var(--ce-white);
+    border: none;
+    padding: 14px 28px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: var(--font-display);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    border-radius: 3px;
+    cursor: pointer;
+    align-self: flex-start;
+  }
+  .form-submit:hover { background: var(--ce-gold); color: var(--ce-navy); }
+
+  /* CTA BANNER */
+  .cta-banner {
+    background: var(--ce-gold);
+    padding: 60px 2rem;
+    text-align: center;
+  }
+  .cta-banner h2 {
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--ce-navy);
+    margin-bottom: 12px;
+  }
+  .cta-banner p { font-size: 16px; color: rgba(13,19,33,0.7); margin-bottom: 32px; }
+  .cta-phone {
+    font-family: var(--font-display);
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--ce-navy);
+    display: block;
+    margin-bottom: 28px;
+    text-decoration: none;
+    letter-spacing: 1px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--ce-navy);
+    padding: 48px 2rem 24px;
+    color: #78909c;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 40px;
+  }
+  .footer-brand { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: var(--ce-white); margin-bottom: 12px; }
+  .footer-brand span { color: var(--ce-gold); }
+  .footer-desc { font-size: 14px; line-height: 1.7; color: #607d8b; }
+  .footer-col h4 {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #90a4ae;
+    margin-bottom: 16px;
+  }
+  .footer-col a, .footer-col p {
+    display: block;
+    font-size: 14px;
+    color: #607d8b;
+    text-decoration: none;
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+  .footer-col a:hover { color: var(--ce-gold); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+  }
+  .footer-license {
+    background: rgba(245,166,35,0.15);
+    border: 1px solid rgba(245,166,35,0.3);
+    color: var(--ce-gold-light);
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 2px;
+    font-weight: 500;
+  }
+  /* PAGE SECTIONS NAV */
+  .page-section { display: block; }
+  .page-section.hidden { display: none; }
+
+  /* INNER PAGES */
+  .page-hero {
+    background: var(--ce-navy);
+    padding: 60px 2rem 50px;
+    text-align: center;
+    border-bottom: 4px solid var(--ce-gold);
+  }
+  .page-hero h1 {
+    font-family: var(--font-display);
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--ce-white);
+    margin-bottom: 12px;
+  }
+  .page-hero p { font-size: 16px; color: #90a4ae; }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    justify-content: center;
+    font-size: 13px;
+    color: #546e7a;
+  }
+  .breadcrumb a { color: var(--ce-gold); text-decoration: none; }
+  .breadcrumb span { color: #546e7a; }
+
+  .emergency-bar {
+    background: var(--ce-red);
+    padding: 12px 2rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  .emergency-bar span { color: white; font-size: 14px; font-weight: 600; }
+  .emergency-bar a { color: white; font-weight: 700; text-decoration: none; }
+</style>
+
+<h2 class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Cohen Electric Services — Full Website Preview. Navigate using the top menu to view each page.</h2>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Cohen <span>Electric</span> Services</div>
+  <div class="nav-links">
+    <a href="#" onclick="showPage('home');return false;">Home</a>
+    <a href="#" onclick="showPage('services');return false;">Services</a>
+    <a href="#" onclick="showPage('about');return false;">About</a>
+    <a href="#" onclick="showPage('areas');return false;">Service Areas</a>
+    <a href="#" onclick="showPage('reviews');return false;">Reviews</a>
+    <a href="#" onclick="showPage('contact');return false;">Contact</a>
+    <a href="tel:+19722432233" class="nav-cta"><i class="ti ti-phone" aria-hidden="true" style="margin-right:6px"></i>(972) 243-2233</a>
+  </div>
+</nav>
+
+<!-- EMERGENCY BAR -->
+<div class="emergency-bar" id="ebar">
+  <i class="ti ti-bolt" aria-hidden="true" style="color:white;font-size:16px"></i>
+  <span>Electrical emergency? We respond fast. Call us now:</span>
+  <a href="tel:+19722432233">(972) 243-2233</a>
+</div>
+
+<!-- ====== HOME ====== -->
+<div id="page-home" class="page-section">
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge"><i class="ti ti-bolt" aria-hidden="true" style="margin-right:6px"></i>Licensed &amp; Insured · Garland, TX</div>
+    <h1>Powering <em>DFW Homes</em><br>& Businesses</h1>
+    <p>Cohen Electric Services delivers safe, reliable, and code-compliant electrical work for residential and commercial clients across the Dallas–Fort Worth area.</p>
+    <div class="hero-btns">
+      <a href="#" class="btn-primary" onclick="showPage('contact');return false;">Get a Free Quote</a>
+      <a href="tel:+19722432233" class="btn-outline"><i class="ti ti-phone" aria-hidden="true" style="margin-right:8px"></i>(972) 243-2233</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-num">5★</div><div class="hero-stat-label">Google Rating</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">DFW</div><div class="hero-stat-label">Metro Coverage</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">100%</div><div class="hero-stat-label">Licensed &amp; Insured</div></div>
+    </div>
+  </div>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-item"><i class="ti ti-shield-check" aria-hidden="true"></i>Licensed &amp; Insured</div>
+    <div class="trust-item"><i class="ti ti-clock" aria-hidden="true"></i>Mon–Fri 8am–4:30pm</div>
+    <div class="trust-item"><i class="ti ti-map-pin" aria-hidden="true"></i>Garland, TX</div>
+    <div class="trust-item"><i class="ti ti-star" aria-hidden="true"></i>5-Star Rated</div>
+  </div>
+
+  <!-- SERVICES PREVIEW -->
+  <section class="services-bg">
+    <div class="container">
+      <div class="services-header">
+        <div class="section-label">What we do</div>
+        <div class="section-title">Electrical Services for Every Need</div>
+        <p class="section-sub">From simple repairs to full commercial installations — our licensed electricians handle it all with precision and professionalism.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon"><i class="ti ti-home-bolt" aria-hidden="true"></i></div>
+          <h3>Residential Electrical</h3>
+          <p>Wiring, outlets, switches, panel upgrades, and everything in between for your home.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="ti ti-building" aria-hidden="true"></i></div>
+          <h3>Commercial Electrical</h3>
+          <p>Reliable electrical systems for offices, retail spaces, and commercial properties.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="ti ti-report-analytics" aria-hidden="true"></i></div>
+          <h3>Panel Upgrades</h3>
+          <p>Outdated or overloaded panel? We upgrade to modern, safe, code-compliant systems.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="ti ti-bulb" aria-hidden="true"></i></div>
+          <h3>Lighting Installation</h3>
+          <p>Indoor, outdoor, recessed, and specialty lighting for any residential or commercial space.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="ti ti-car" aria-hidden="true"></i></div>
+          <h3>EV Charger Install</h3>
+          <p>Home and commercial EV charging station installation by certified electricians.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="ti ti-tools" aria-hidden="true"></i></div>
+          <h3>Repairs &amp; Diagnostics</h3>
+          <p>Flickering lights, tripped breakers, dead outlets — we diagnose and fix it fast.</p>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:40px">
+        <a href="#" class="btn-primary" onclick="showPage('services');return false;">View All Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT PREVIEW -->
+  <section>
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-img-wrap">
+          <img src="data:image/jpeg;base64,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" alt="Cohen Electric Services building in Garland, TX" class="about-img" />
+          <div class="about-badge">
+            <div class="about-badge-num">DFW</div>
+            <div class="about-badge-label">Area Coverage</div>
+          </div>
+        </div>
+        <div>
+          <div class="section-label">About Cohen Electric</div>
+          <div class="section-title">Trusted Electricians Serving the DFW Metroplex</div>
+          <p class="section-sub">Cohen Electric Services has built a reputation on doing the job right — showing up on time, working cleanly, and standing behind every project we complete.</p>
+          <ul class="about-list">
+            <li><i class="ti ti-circle-check" aria-hidden="true"></i>Fully licensed and insured for residential and commercial work</li>
+            <li><i class="ti ti-circle-check" aria-hidden="true"></i>Responsive scheduling — we work hard to accommodate you quickly</li>
+            <li><i class="ti ti-circle-check" aria-hidden="true"></i>Located in Garland, TX, serving the entire DFW area</li>
+            <li><i class="ti ti-circle-check" aria-hidden="true"></i>5-star rated on Google by satisfied local customers</li>
+          </ul>
+          <div style="margin-top:32px">
+            <a href="#" class="btn-primary" onclick="showPage('about');return false;">Our Story</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS PREVIEW -->
+  <section class="reviews-bg">
+    <div class="container">
+      <div class="reviews-header">
+        <div class="section-label" style="color:var(--ce-gold)">What clients say</div>
+        <div class="section-title" style="color:var(--ce-white)">Real Words from Real Customers</div>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Best damn electrical contractor in Texas."</p>
+          <div class="review-author">Robert Shier</div>
+          <div class="review-role">Google Review</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Always reliable and great service. They came same-day and fixed the issue immediately."</p>
+          <div class="review-author">Emmy Lawrence</div>
+          <div class="review-role">Google Review</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Best electric service in DFW! Highly recommend Cohen for any job big or small."</p>
+          <div class="review-author">Debi Segroves</div>
+          <div class="review-role">Local Guide · Google</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Two electricians, very nice, quick work. They came same-day and solved a dangerous wire issue on our 1936 home."</p>
+          <div class="review-author">Steve McWilliams</div>
+          <div class="review-role">Google Review</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-banner">
+    <h2>Ready to get started?</h2>
+    <p>Call us or fill out a quote request — we'll get back to you fast.</p>
+    <a href="tel:+19722432233" class="cta-phone">(972) 243-2233</a>
+    <a href="#" class="btn-outline" style="border-color:var(--ce-navy);color:var(--ce-navy)" onclick="showPage('contact');return false;">Request a Free Quote</a>
+  </div>
+</div>
+
+<!-- ====== SERVICES PAGE ====== -->
+<div id="page-services" class="page-section hidden">
+  <div class="page-hero">
+    <div class="breadcrumb"><a href="#" onclick="showPage('home');return false;">Home</a><span>›</span><span>Services</span></div>
+    <h1>Our Electrical Services</h1>
+    <p>Comprehensive electrical solutions for homes and businesses across Dallas–Fort Worth.</p>
+  </div>
+  <section class="services-bg">
+    <div class="container">
+      <div class="services-grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+        <div class="service-card"><div class="service-icon"><i class="ti ti-home-bolt" aria-hidden="true"></i></div><h3>Residential Electrical</h3><p>Full-service residential wiring and electrical systems. From new construction wiring to service upgrades on older homes, we handle all residential needs.</p></div>
+        <div class="service-card"><div class="service-icon"><i class="ti ti-building" aria-hidden="true"></i></div><h3>Commercial Electrical</h3><p>Licensed commercial electrical work for offices, warehouses, retail spaces, and industrial facilities throughout DFW.</p></div>
+        <div class="service-card"><div class="service-icon"><i class="ti ti-report-analytics" aria-hidden="true"></i></div><h3>Panel Upgrades &amp; Changes</h3><p>Replace outdated fuse boxes, upgrade to higher amperage, and ensure your electrical panel meets current safety codes.</p></div>
+        <div class="service-card"><div class="service-icon"><i class="ti ti-bulb" aria-hidden="true"></i></div><h3>Lighting Installation</h3><p>Recessed lighting, exterior lighting, chandeliers, LED retrofits, and landscape lighting for any space.</p></div>
+        <div class="service-card"><div class="service-icon"><i class="ti ti-car" aria-hidden="true"></i></div><h3>EV Charger Installation</h3><p>Level 1 and Level 2 EV charger installation at your home or business. We handle permits, wiring, and setup.</p></div>
+        <div class="service-card"><div class="service-icon"><i class="ti ti-tools" aria-hidden="true"></i></div><h3>Electrical Repairs</h3><p>Outlets not working, breakers tripping, lights flickering — our technicians diagnose and fix issues correctly the first time.</p></div>
+        <div class="service-card"><div class="service-icon"><i class="ti ti-plug" aria-hidden="true"></i></div><h3>Outlets &amp; Switches</h3><p>New outlet installation, GFCI upgrades, USB outlets, and dimmer switches for kitchens, bathrooms, and living areas.</p></div>
+        <div class="service-card"><div class="service-icon"><i class="ti ti-shield-check" aria-hidden="true"></i></div><h3>Safety Inspections</h3><p>Pre-purchase inspections, code compliance checks, and safety audits to protect your family or tenants.</p></div>
+        <div class="service-card"><div class="service-icon"><i class="ti ti-antenna" aria-hidden="true"></i></div><h3>Generator Connections</h3><p>Generator interlock kits and transfer switch installations so your home or business is ready for power outages.</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="cta-banner">
+    <h2>Not sure what you need?</h2>
+    <p>Give us a call and we'll help you figure it out.</p>
+    <a href="tel:+19722432233" class="cta-phone">(972) 243-2233</a>
+  </div>
+</div>
+
+<!-- ====== ABOUT PAGE ====== -->
+<div id="page-about" class="page-section hidden">
+  <div class="page-hero">
+    <div class="breadcrumb"><a href="#" onclick="showPage('home');return false;">Home</a><span>›</span><span>About</span></div>
+    <h1>About Cohen Electric</h1>
+    <p>A trusted name in Dallas–Fort Worth electrical services.</p>
+  </div>
+  <section>
+    <div class="container">
+      <div class="about-grid">
+        <div>
+          <div class="section-label">Our story</div>
+          <div class="section-title">Electricians Who Show Up and Do It Right</div>
+          <p class="section-sub">Cohen Electric Services was built on a simple idea: provide honest, high-quality electrical work and treat every customer the way we'd want to be treated ourselves.</p>
+          <p style="margin-top:16px;font-size:15px;color:var(--ce-gray);line-height:1.7">We're based in Garland, TX and serve the full Dallas–Fort Worth metroplex. Whether it's a quick repair or a full commercial installation, our licensed team approaches every job with the same level of care and professionalism. We're proud of the five-star reputation we've earned, and we work every day to deserve it.</p>
+          <ul class="about-list">
+            <li><i class="ti ti-circle-check" aria-hidden="true"></i>Licensed and insured for residential and commercial work</li>
+            <li><i class="ti ti-circle-check" aria-hidden="true"></i>Serving Garland, Dallas, Plano, Richardson, Mesquite, and surrounding cities</li>
+            <li><i class="ti ti-circle-check" aria-hidden="true"></i>Responsive scheduling — we work hard to accommodate you</li>
+            <li><i class="ti ti-circle-check" aria-hidden="true"></i>Transparent pricing and clear communication on every project</li>
+          </ul>
+        </div>
+        <div class="about-img-wrap">
+          <img src="data:image/jpeg;base64,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" alt="Cohen Electric Services office in Garland TX" class="about-img" />
+          <div class="about-badge">
+            <div class="about-badge-num">5★</div>
+            <div class="about-badge-label">Google Rated</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="services-bg">
+    <div class="container" style="text-align:center">
+      <div class="section-label">Our values</div>
+      <div class="section-title">What Sets Us Apart</div>
+      <div class="services-grid" style="margin-top:40px;grid-template-columns:repeat(2,1fr);max-width:740px;margin-left:auto;margin-right:auto">
+        <div class="service-card" style="text-align:left"><div class="service-icon"><i class="ti ti-clock" aria-hidden="true"></i></div><h3>Punctuality</h3><p>We respect your time. When we commit to a time, we show up — and if anything changes, we call.</p></div>
+        <div class="service-card" style="text-align:left"><div class="service-icon"><i class="ti ti-shield" aria-hidden="true"></i></div><h3>Safety First</h3><p>Electrical work done wrong is dangerous. We follow code, use quality materials, and don't cut corners.</p></div>
+        <div class="service-card" style="text-align:left"><div class="service-icon"><i class="ti ti-message" aria-hidden="true"></i></div><h3>Clear Communication</h3><p>We explain what we're doing and why, so you're never left in the dark about your own electrical system.</p></div>
+        <div class="service-card" style="text-align:left"><div class="service-icon"><i class="ti ti-star" aria-hidden="true"></i></div><h3>Quality Workmanship</h3><p>We take pride in clean, professional installs. Every project is finished as if our name is attached to it — because it is.</p></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ====== SERVICE AREAS PAGE ====== -->
+<div id="page-areas" class="page-section hidden">
+  <div class="page-hero">
+    <div class="breadcrumb"><a href="#" onclick="showPage('home');return false;">Home</a><span>›</span><span>Service Areas</span></div>
+    <h1>Service Areas</h1>
+    <p>Proudly serving Garland and the entire Dallas–Fort Worth Metroplex.</p>
+  </div>
+  <section>
+    <div class="container">
+      <div class="section-label">Coverage</div>
+      <div class="section-title">We Come to You</div>
+      <p class="section-sub">Our team is based in Garland, TX and travels throughout DFW to serve residential and commercial clients. Don't see your city? Call us — we likely cover it.</p>
+      <div class="areas-grid">
+        <div class="area-pill"><i class="ti ti-map-pin" aria-hidden="true"></i>Garland</div>
+        <div class="area-pill"><i class="ti ti-map-pin" aria-hidden="true"></i>Dallas</div>
+        <div class="area-pill"><i class="ti ti-map-pin" aria-hidden="true"></i>Plano</div>
+        <div class="area-pill"><i class="ti ti-map-pin" aria-hidden="true"></i>Richardson</div>
+        <div class="area-pill"><i class="ti ti-map-pin" aria-hidden="true"></i>Mesquite</div>
+        <div class="area-pill"><i class="ti ti-map-pin" aria-hidden="true"></i>Rowlett</div>
+        <div class="area-pill"><i class="ti ti-map-pin" aria-hidden="true"></i>Rockwall</div>
+        <div class="area-pill"><i class="ti ti-map-pin" aria-hidden="true"></i>Wylie</div>
+        <div class="area-pill"><i class="ti ti-map-pin" aria-hidden="true"></i>Sachse</div>
+        <div class="area-pill"><i class="ti ti-map-pin" aria-hidden="true"></i>Allen</div>
+        <div class="area-pill"><i class="ti ti-map-pin" aria-hidden="true"></i>McKinney</div>
+        <div class="area-pill"><i class="ti ti-map-pin" aria-hidden="true"></i>Irving</div>
+      </div>
+      <div style="margin-top:48px;background:var(--ce-light);border-radius:4px;padding:32px;border-left:4px solid var(--ce-gold)">
+        <h3 style="font-family:var(--font-display);font-size:20px;color:var(--ce-navy);margin-bottom:10px">Not sure if we serve your area?</h3>
+        <p style="font-size:15px;color:var(--ce-gray);margin-bottom:20px">Give us a call or send a message. We cover a wide footprint across DFW and are happy to let you know if we can help.</p>
+        <a href="tel:+19722432233" class="btn-primary">(972) 243-2233</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ====== REVIEWS PAGE ====== -->
+<div id="page-reviews" class="page-section hidden">
+  <div class="page-hero">
+    <div class="breadcrumb"><a href="#" onclick="showPage('home');return false;">Home</a><span>›</span><span>Reviews</span></div>
+    <h1>Customer Reviews</h1>
+    <p>See what homeowners and businesses across DFW have to say about Cohen Electric.</p>
+  </div>
+  <section class="reviews-bg">
+    <div class="container">
+      <div class="reviews-grid">
+        <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"We had a spark from our electrical panel on our 1936 home. They came immediately, discovered a pinched wire, and fixed it. Two electricians, very nice, quick work. I will call them again."</p><div class="review-author">Steve McWilliams</div><div class="review-role">Google Review</div></div>
+        <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Great experience, knowledgeable electrician! I would definitely use them again."</p><div class="review-author">R.S.</div><div class="review-role">Local Guide · Google</div></div>
+        <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Always reliable and great service."</p><div class="review-author">Emmy Lawrence</div><div class="review-role">Google Review</div></div>
+        <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Best damn electrical contractor in Texas."</p><div class="review-author">Robert Shier</div><div class="review-role">Google Review</div></div>
+        <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Best electric service in DFW!"</p><div class="review-author">Debi Segroves</div><div class="review-role">Local Guide · Google</div></div>
+        <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Excellent service."</p><div class="review-author">Mendy Halsted</div><div class="review-role">Local Guide · Google</div></div>
+      </div>
+      <div style="text-align:center;margin-top:48px">
+        <p style="color:#90a4ae;font-size:15px;margin-bottom:20px">Want to share your experience with Cohen Electric?</p>
+        <a href="https://www.google.com/maps/place/Cohen+Electric+Services" target="_blank" class="btn-primary">Leave a Google Review</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ====== CONTACT PAGE ====== -->
+<div id="page-contact" class="page-section hidden">
+  <div class="page-hero">
+    <div class="breadcrumb"><a href="#" onclick="showPage('home');return false;">Home</a><span>›</span><span>Contact</span></div>
+    <h1>Get a Free Quote</h1>
+    <p>Call us directly or fill out the form and we'll be in touch quickly.</p>
+  </div>
+  <section>
+    <div class="container">
+      <div class="hours-contact-grid">
+        <div>
+          <div class="section-label">Send a message</div>
+          <div class="section-title" style="font-size:28px">Request a Quote</div>
+          <div class="contact-form">
+            <div class="form-row">
+              <div class="form-group"><label for="fname">First name</label><input type="text" id="fname" placeholder="John" /></div>
+              <div class="form-group"><label for="lname">Last name</label><input type="text" id="lname" placeholder="Smith" /></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label for="email">Email</label><input type="email" id="email" placeholder="john@email.com" /></div>
+              <div class="form-group"><label for="phone">Phone</label><input type="tel" id="phone" placeholder="(214) 555-0100" /></div>
+            </div>
+            <div class="form-group">
+              <label for="service">Service needed</label>
+              <select id="service">
+                <option>Select a service…</option>
+                <option>Residential electrical</option>
+                <option>Commercial electrical</option>
+                <option>Panel upgrade</option>
+                <option>Lighting installation</option>
+                <option>EV charger installation</option>
+                <option>Electrical repair</option>
+                <option>Safety inspection</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="msg">Tell us about your project</label>
+              <textarea id="msg" placeholder="Describe what you need help with…"></textarea>
+            </div>
+            <button class="form-submit" onclick="alert('Form submitted! Cohen Electric will contact you shortly.')">Send Request <i class="ti ti-arrow-right" aria-hidden="true" style="margin-left:6px"></i></button>
+          </div>
+        </div>
+        <div>
+          <div class="section-label">Contact info</div>
+          <div class="section-title" style="font-size:28px">Reach Us Directly</div>
+          <div style="margin-top:24px;display:flex;flex-direction:column;gap:20px">
+            <div style="display:flex;gap:14px;align-items:flex-start">
+              <div class="service-icon" style="flex-shrink:0"><i class="ti ti-phone" aria-hidden="true"></i></div>
+              <div>
+                <div style="font-size:13px;color:var(--ce-gray);margin-bottom:4px">Phone</div>
+                <a href="tel:+19722432233" style="font-size:20px;font-family:var(--font-display);font-weight:600;color:var(--ce-navy);text-decoration:none">(972) 243-2233</a>
+              </div>
+            </div>
+            <div style="display:flex;gap:14px;align-items:flex-start">
+              <div class="service-icon" style="flex-shrink:0"><i class="ti ti-map-pin" aria-hidden="true"></i></div>
+              <div>
+                <div style="font-size:13px;color:var(--ce-gray);margin-bottom:4px">Address</div>
+                <div style="font-size:15px;color:var(--ce-dark);line-height:1.6">325 S Shiloh Rd, Suite #100<br>Garland, TX 75042</div>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:32px">
+            <div class="section-label" style="margin-bottom:0">Business hours</div>
+            <table class="hours-table">
+              <tr><td>Monday</td><td>8:00 am – 4:30 pm</td></tr>
+              <tr><td>Tuesday</td><td>8:00 am – 4:30 pm</td></tr>
+              <tr><td>Wednesday</td><td>8:00 am – 4:30 pm</td></tr>
+              <tr><td>Thursday</td><td>8:00 am – 4:30 pm</td></tr>
+              <tr><td>Friday</td><td>8:00 am – 4:30 pm</td></tr>
+              <tr><td>Saturday</td><td class="closed">Closed</td></tr>
+              <tr><td>Sunday</td><td class="closed">Closed</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER (always visible) -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Cohen <span>Electric</span> Services</div>
+        <p class="footer-desc">Licensed and insured electrical contractor serving the Dallas–Fort Worth metroplex from our Garland, TX location. Residential and commercial.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="#" onclick="showPage('services');return false;">Residential</a>
+        <a href="#" onclick="showPage('services');return false;">Commercial</a>
+        <a href="#" onclick="showPage('services');return false;">Panel Upgrades</a>
+        <a href="#" onclick="showPage('services');return false;">EV Chargers</a>
+        <a href="#" onclick="showPage('services');return false;">Lighting</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="tel:+19722432233">(972) 243-2233</a>
+        <p>325 S Shiloh Rd, Suite #100</p>
+        <p>Garland, TX 75042</p>
+        <p style="margin-top:8px">Mon–Fri: 8am–4:30pm</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Cohen Electric Services. All rights reserved.</span>
+      <span class="footer-license">Licensed &amp; Insured · Garland, TX</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+function showPage(id) {
+  document.querySelectorAll('.page-section').forEach(el => el.classList.add('hidden'));
+  var target = document.getElementById('page-' + id);
+  if (target) { target.classList.remove('hidden'); }
+  window.scrollTo && window.scrollTo(0, 0);
+}
+</script>
+
+<!-- ── CARLINE DIGITAL BACK BAR ── -->
+<style>
+#cd-back-bar{position:fixed;bottom:0;left:0;right:0;z-index:99999;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 24px;background:rgba(14,13,10,0.94);backdrop-filter:blur(16px);border-top:1px solid rgba(201,168,76,0.25);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;}
+#cd-back-bar a{display:inline-flex;align-items:center;gap:8px;color:#C9A84C;font-size:12px;font-weight:600;letter-spacing:0.08em;text-decoration:none;text-transform:uppercase;transition:opacity 0.2s;}
+#cd-back-bar a:hover{opacity:0.75;}
+#cd-back-bar a svg{flex-shrink:0;}
+#cd-back-bar .cd-label{font-size:11px;color:rgba(244,240,232,0.35);letter-spacing:0.12em;text-transform:uppercase;}
+#cd-back-bar .cd-brand{font-size:12px;color:rgba(244,240,232,0.55);font-weight:500;letter-spacing:0.04em;}
+#cd-dismiss{background:none;border:none;cursor:pointer;color:rgba(244,240,232,0.3);padding:4px;line-height:1;font-size:16px;transition:color 0.2s;}
+#cd-dismiss:hover{color:rgba(244,240,232,0.7);}
+</style>
+<div id="cd-back-bar">
+  <a href="../../" title="Back to Carline Digital">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Back to Carline Digital
+  </a>
+  <div class="cd-brand">Designed by Carline Digital</div>
+  <button id="cd-dismiss" aria-label="Dismiss bar" onclick="document.getElementById('cd-back-bar').style.display='none'">✕</button>
+</div>
+</body>
+</html>
