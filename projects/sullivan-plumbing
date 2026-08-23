@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sullivan Plumbing & Gas | Mt Eden Plumbers & Gas Fitters</title>
+  <meta name="description" content="Sullivan Plumbing & Gas provides plumbing, gas fitting, hot water and rainwater harvesting services from Mt Eden, Auckland. Call 0800 785 5486 for a quote.">
+  <meta property="og:title" content="Sullivan Plumbing & Gas | Mt Eden, Auckland">
+  <meta property="og:description" content="Plumbing, gas fitting, hot water and rainwater harvesting services from Mt Eden, Auckland.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0b2d43">
+  <style>
+    :root {
+      --ink: #0a2639;
+      --ink-2: #123a50;
+      --paper: #f7f4ed;
+      --paper-2: #eee9dd;
+      --white: #fffdf8;
+      --blue: #0d6692;
+      --blue-2: #44a0c8;
+      --aqua: #7ec7c0;
+      --sand: #d8c8a8;
+      --line: rgba(10, 38, 57, .16);
+      --muted: #63727a;
+      --shadow: 0 30px 80px rgba(5, 31, 48, .16);
+      --radius: 28px;
+      --ease: cubic-bezier(.2,.75,.25,1);
+      --max: 1240px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; background: var(--paper); }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.55;
+      overflow-x: hidden;
+    }
+    body.menu-open { overflow: hidden; }
+    img { display: block; width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea { font: inherit; }
+    button { color: inherit; }
+    ::selection { background: var(--aqua); color: var(--ink); }
+
+    .skip-link {
+      position: fixed; left: 1rem; top: 1rem; z-index: 9999;
+      padding: .7rem 1rem; background: var(--white); border-radius: 999px;
+      transform: translateY(-180%); transition: .2s ease;
+    }
+    .skip-link:focus { transform: none; }
+
+    .progress {
+      position: fixed; inset: 0 auto auto 0; height: 3px; width: 0;
+      background: linear-gradient(90deg, var(--blue-2), var(--aqua)); z-index: 1200;
+    }
+
+    .nav {
+      position: fixed; left: 0; right: 0; top: 0; z-index: 1000;
+      padding: 18px 24px; transition: .35s var(--ease);
+    }
+    .nav.scrolled { padding-top: 10px; padding-bottom: 10px; }
+    .nav-shell {
+      max-width: var(--max); margin: 0 auto; display: flex; align-items: center;
+      justify-content: space-between; gap: 20px; padding: 10px 12px 10px 18px;
+      border: 1px solid rgba(255,255,255,.14); border-radius: 20px;
+      background: rgba(8,36,54,.72); color: white; backdrop-filter: blur(18px);
+      box-shadow: 0 10px 40px rgba(0,0,0,.12);
+    }
+    .brand { display: flex; align-items: center; gap: 11px; font-weight: 850; letter-spacing: -.03em; }
+    .brand-mark {
+      width: 34px; aspect-ratio: 1; border-radius: 50%;
+      border: 2px solid rgba(255,255,255,.85); position: relative;
+    }
+    .brand-mark::before, .brand-mark::after {
+      content: ""; position: absolute; border: 2px solid var(--aqua); border-radius: 50%;
+      width: 9px; height: 15px; transform: rotate(42deg);
+    }
+    .brand-mark::before { left: 5px; top: 6px; }
+    .brand-mark::after { right: 5px; bottom: 5px; }
+    .brand small { display: block; font-size: .58rem; letter-spacing: .13em; opacity: .72; text-transform: uppercase; margin-top: -2px; }
+    .nav-links { display: flex; align-items: center; gap: 4px; }
+    .nav-links a {
+      padding: 9px 12px; border-radius: 12px; font-size: .87rem; font-weight: 700;
+      color: rgba(255,255,255,.72); transition: .25s ease;
+    }
+    .nav-links a:hover, .nav-links a.active { color: white; background: rgba(255,255,255,.09); }
+    .nav-call {
+      display: inline-flex; align-items: center; gap: 8px; border-radius: 13px;
+      padding: 10px 14px; background: var(--white); color: var(--ink); font-weight: 850; font-size: .88rem;
+    }
+    .menu-toggle { display: none; background: transparent; border: 0; padding: 10px; cursor: pointer; }
+    .menu-toggle span { display: block; width: 24px; height: 2px; background: white; margin: 5px 0; transition: .25s ease; }
+
+    .hero {
+      min-height: 92vh; color: white; position: relative; overflow: hidden;
+      background: radial-gradient(circle at 73% 23%, rgba(68,160,200,.35), transparent 30%), var(--ink);
+      display: grid; align-items: end; padding: 150px 24px 70px;
+    }
+    .hero::before {
+      content: ""; position: absolute; inset: 0 0 0 54%;
+      background: linear-gradient(90deg, var(--ink) 0%, rgba(10,38,57,.18) 48%, rgba(10,38,57,.06)),
+                  url('https://irp.cdn-website.com//32586392/dms3rep/multi/opt/Sullivan%2BPlumbing%2Band%2BGas%2B3-1152w.jpg') center/cover no-repeat;
+      opacity: .82;
+    }
+    .hero::after {
+      content: ""; position: absolute; width: 480px; height: 480px; border: 1px solid rgba(126,199,192,.28);
+      border-radius: 50%; right: -120px; top: 5%; box-shadow: inset 0 0 0 80px rgba(126,199,192,.035), inset 0 0 0 160px rgba(126,199,192,.025);
+    }
+    .hero-grid {
+      position: relative; z-index: 2; width: min(var(--max),100%); margin: 0 auto;
+      display: grid; grid-template-columns: minmax(0, .94fr) minmax(340px, .55fr); gap: 8vw; align-items: end;
+    }
+    .eyebrow { display: flex; align-items: center; gap: 10px; font-size: .78rem; letter-spacing: .14em; font-weight: 850; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 34px; height: 1px; background: currentColor; opacity: .55; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { font-size: clamp(3.4rem, 7vw, 7rem); line-height: .92; letter-spacing: -.07em; margin: 24px 0 28px; max-width: 9.5ch; }
+    h1 em { font-style: normal; color: var(--aqua); }
+    .hero-lede { font-size: clamp(1.05rem, 1.6vw, 1.35rem); color: rgba(255,255,255,.8); max-width: 640px; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 34px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      min-height: 50px; padding: 0 20px; border-radius: 14px; border: 1px solid transparent;
+      font-weight: 850; letter-spacing: -.01em; cursor: pointer; transition: transform .3s var(--ease), box-shadow .3s ease, background .25s ease;
+    }
+    .btn-primary { background: var(--white); color: var(--ink); box-shadow: 0 12px 28px rgba(0,0,0,.14); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 34px rgba(0,0,0,.2); }
+    .btn-ghost { border-color: rgba(255,255,255,.25); color: white; background: rgba(255,255,255,.06); }
+    .btn-ghost:hover { background: rgba(255,255,255,.12); }
+    .arrow { font-size: 1.2em; transform: translateY(-1px); }
+
+    .hero-proof {
+      align-self: end; border-top: 1px solid rgba(255,255,255,.24); padding-top: 24px;
+      display: grid; gap: 18px; max-width: 430px; justify-self: end;
+    }
+    .hero-proof p { margin: 0; color: rgba(255,255,255,.72); }
+    .proof-row { display: flex; flex-wrap: wrap; gap: 9px; }
+    .proof-pill { padding: 7px 10px; border-radius: 10px; background: rgba(255,255,255,.09); font-size: .78rem; font-weight: 800; }
+    .scroll-note { display: flex; align-items: center; gap: 12px; font-size: .75rem; text-transform: uppercase; letter-spacing: .12em; opacity: .62; margin-top: 16px; }
+    .scroll-note i { width: 42px; height: 1px; background: currentColor; }
+
+    .ticker { background: var(--aqua); color: var(--ink); border-bottom: 1px solid rgba(10,38,57,.12); overflow: hidden; }
+    .ticker-track { display: flex; width: max-content; animation: ticker 30s linear infinite; }
+    .ticker-item { padding: 15px 26px; font-weight: 850; font-size: .78rem; letter-spacing: .09em; text-transform: uppercase; display: flex; align-items: center; gap: 24px; }
+    .ticker-item::after { content: "•"; opacity: .55; }
+    @keyframes ticker { to { transform: translateX(-50%); } }
+
+    .section { padding: 110px 24px; position: relative; }
+    .container { width: min(var(--max),100%); margin: 0 auto; }
+    .section-head { display: grid; grid-template-columns: .55fr 1.25fr; gap: 8vw; align-items: start; margin-bottom: 62px; }
+    .section-kicker { font-size: .76rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 900; color: var(--blue); }
+    .section-head h2 { font-size: clamp(2.7rem, 5vw, 5.4rem); line-height: .95; letter-spacing: -.065em; margin: 0; max-width: 11ch; }
+    .section-head p { color: var(--muted); font-size: 1.05rem; max-width: 620px; margin-top: 22px; }
+
+    .services { background: var(--white); }
+    .service-list { border-top: 1px solid var(--line); }
+    .service {
+      display: grid; grid-template-columns: 80px 1fr auto; align-items: center; gap: 22px;
+      border-bottom: 1px solid var(--line); padding: 23px 0; cursor: pointer; transition: .3s var(--ease);
+    }
+    .service:hover { padding-left: 12px; }
+    .service-num { font-size: .75rem; color: var(--muted); font-weight: 850; }
+    .service h3 { margin: 0; font-size: clamp(1.45rem, 3vw, 2.55rem); letter-spacing: -.04em; }
+    .service-toggle { width: 42px; height: 42px; border: 1px solid var(--line); border-radius: 50%; display: grid; place-items: center; transition: .3s ease; }
+    .service[aria-expanded="true"] .service-toggle { transform: rotate(45deg); background: var(--ink); color: white; }
+    .service-detail { grid-column: 2 / 4; max-height: 0; overflow: hidden; transition: max-height .45s var(--ease); }
+    .service-detail-inner { display: grid; grid-template-columns: 1fr .65fr; gap: 6vw; padding: 4px 0 28px; }
+    .service-detail p { color: var(--muted); max-width: 680px; }
+    .tags { display: flex; gap: 7px; flex-wrap: wrap; align-content: start; }
+    .tag { font-size: .75rem; font-weight: 800; border: 1px solid var(--line); padding: 6px 9px; border-radius: 8px; background: var(--paper); }
+
+    .feature { background: var(--ink); color: white; overflow: hidden; }
+    .feature-grid { display: grid; grid-template-columns: .88fr 1fr; gap: 7vw; align-items: center; }
+    .feature-copy h2 { font-size: clamp(3rem, 5.6vw, 5.8rem); line-height: .92; letter-spacing: -.065em; margin: 16px 0 26px; }
+    .feature-copy p { color: rgba(255,255,255,.7); max-width: 590px; font-size: 1.05rem; }
+    .feature-image-wrap { position: relative; min-height: 640px; }
+    .feature-image {
+      position: absolute; inset: 0; border-radius: var(--radius); overflow: hidden; background: white; box-shadow: var(--shadow);
+    }
+    .feature-image img { height: 100%; object-fit: contain; padding: 8%; }
+    .feature-image::after { content: "RINNAI INFINITY"; position: absolute; left: -5px; bottom: 22px; font-weight: 950; font-size: clamp(2.4rem, 5vw, 5rem); color: var(--ink); letter-spacing: -.06em; opacity: .07; white-space: nowrap; }
+    .feature-points { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); border-top: 1px solid rgba(255,255,255,.15); margin-top: 34px; }
+    .feature-point { padding: 18px 20px 18px 0; border-bottom: 1px solid rgba(255,255,255,.15); color: rgba(255,255,255,.72); font-size: .9rem; }
+    .feature-point b { display: block; color: white; margin-bottom: 3px; }
+
+    .water { background: var(--paper); }
+    .water-grid { display: grid; grid-template-columns: 1.1fr .8fr; gap: 32px; align-items: stretch; }
+    .water-visual { border-radius: var(--radius); overflow: hidden; min-height: 660px; position: relative; box-shadow: var(--shadow); }
+    .water-visual img { height: 100%; object-fit: cover; }
+    .water-visual .caption { position: absolute; inset: auto 18px 18px 18px; padding: 17px 18px; border-radius: 16px; color: white; background: rgba(10,38,57,.75); backdrop-filter: blur(14px); font-size: .86rem; }
+    .water-copy { padding: 18px 2vw 18px 3vw; display: flex; flex-direction: column; justify-content: center; }
+    .water-copy h2 { font-size: clamp(2.9rem, 5vw, 5.2rem); line-height: .95; letter-spacing: -.06em; margin: 15px 0 28px; }
+    .water-copy > p { color: var(--muted); font-size: 1.03rem; }
+    .mini-list { margin-top: 30px; border-top: 1px solid var(--line); }
+    .mini-item { display: grid; grid-template-columns: 40px 1fr; gap: 16px; padding: 19px 0; border-bottom: 1px solid var(--line); }
+    .mini-item strong { font-size: .78rem; color: var(--blue); }
+    .mini-item b { display: block; margin-bottom: 4px; }
+    .mini-item span { color: var(--muted); font-size: .88rem; }
+
+    .about { background: var(--white); overflow: hidden; }
+    .about-grid { display: grid; grid-template-columns: .82fr 1.18fr; gap: 8vw; align-items: start; }
+    .about-sticky { position: sticky; top: 110px; }
+    .about-sticky h2 { font-size: clamp(3.1rem, 5vw, 5.7rem); line-height: .94; letter-spacing: -.065em; margin: 14px 0 28px; }
+    .about-sticky p { color: var(--muted); font-size: 1.04rem; }
+    .principles { counter-reset: principle; border-top: 1px solid var(--line); }
+    .principle { counter-increment: principle; padding: 34px 0; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 64px 1fr; gap: 22px; }
+    .principle::before { content: "0" counter(principle); color: var(--blue); font-size: .76rem; font-weight: 900; }
+    .principle h3 { font-size: 1.55rem; letter-spacing: -.035em; margin-bottom: 8px; }
+    .principle p { color: var(--muted); margin: 0; max-width: 620px; }
+
+    .reviews { background: var(--ink); color: white; }
+    .reviews .section-kicker { color: var(--aqua); }
+    .reviews-head { display: flex; justify-content: space-between; gap: 24px; align-items: end; margin-bottom: 42px; }
+    .reviews-head h2 { font-size: clamp(2.8rem, 5vw, 5.2rem); letter-spacing: -.06em; line-height: .95; margin: 0; max-width: 10ch; }
+    .review-controls { display: flex; gap: 8px; }
+    .review-controls button { width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(255,255,255,.2); background: transparent; color: white; cursor: pointer; }
+    .review-window { overflow: hidden; }
+    .review-track { display: flex; transition: transform .55s var(--ease); }
+    .review-slide { flex: 0 0 100%; padding: 24px 0 8px; }
+    .review-quote { font-size: clamp(1.9rem, 4vw, 4rem); line-height: 1.08; letter-spacing: -.045em; max-width: 1050px; margin-bottom: 38px; }
+    .review-meta { color: rgba(255,255,255,.58); font-size: .82rem; text-transform: uppercase; letter-spacing: .1em; }
+    .review-dots { display: flex; gap: 7px; margin-top: 32px; }
+    .review-dot { width: 44px; height: 3px; background: rgba(255,255,255,.16); border: 0; padding: 0; cursor: pointer; }
+    .review-dot.active { background: var(--aqua); }
+
+    .contact { padding-bottom: 0; background: var(--paper); }
+    .contact-card {
+      background: var(--blue); color: white; border-radius: 34px; padding: clamp(30px, 6vw, 78px);
+      position: relative; overflow: hidden; box-shadow: var(--shadow);
+    }
+    .contact-card::before { content: ""; position: absolute; width: 450px; height: 450px; border-radius: 50%; border: 1px solid rgba(255,255,255,.14); right: -160px; top: -210px; box-shadow: inset 0 0 0 80px rgba(255,255,255,.03), inset 0 0 0 160px rgba(255,255,255,.025); }
+    .contact-grid { display: grid; grid-template-columns: 1.15fr .65fr; gap: 8vw; position: relative; z-index: 1; }
+    .contact-card h2 { font-size: clamp(3.4rem, 6.5vw, 6.8rem); line-height: .9; letter-spacing: -.07em; margin: 14px 0 26px; }
+    .contact-card p { color: rgba(255,255,255,.72); max-width: 610px; font-size: 1.06rem; }
+    .contact-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+    .contact-info { align-self: end; border-top: 1px solid rgba(255,255,255,.23); }
+    .contact-info div { padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,.23); }
+    .contact-info span { display: block; font-size: .72rem; text-transform: uppercase; letter-spacing: .12em; opacity: .58; margin-bottom: 4px; }
+    .contact-info strong { font-size: 1.08rem; }
+
+    footer { background: var(--paper); padding: 50px 24px 32px; }
+    .footer-grid { width: min(var(--max),100%); margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: end; }
+    .footer-brand { font-size: clamp(2rem, 4vw, 4rem); font-weight: 950; letter-spacing: -.065em; }
+    .footer-note { color: var(--muted); max-width: 540px; font-size: .84rem; margin-top: 8px; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 10px 18px; justify-content: flex-end; font-size: .83rem; font-weight: 780; }
+    .footer-bottom { width: min(var(--max),100%); margin: 30px auto 0; padding-top: 18px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 20px; color: var(--muted); font-size: .76rem; }
+
+    .mobile-call { display: none; }
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .75s var(--ease), transform .75s var(--ease); }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (max-width: 980px) {
+      .nav-links { display: none; }
+      .menu-toggle { display: block; }
+      .nav-call { display: none; }
+      .nav-links.open {
+        display: flex; position: fixed; inset: 84px 18px auto; padding: 18px; flex-direction: column; align-items: stretch;
+        background: var(--ink); border: 1px solid rgba(255,255,255,.12); border-radius: 20px; box-shadow: var(--shadow);
+      }
+      .nav-links.open a { padding: 14px; font-size: 1rem; }
+      .hero { min-height: 860px; }
+      .hero::before { inset: 42% 0 0 22%; opacity: .55; }
+      .hero-grid { grid-template-columns: 1fr; gap: 56px; }
+      .hero-proof { justify-self: start; }
+      .section-head { grid-template-columns: 1fr; gap: 18px; }
+      .feature-grid, .water-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .feature-image-wrap { min-height: 500px; }
+      .water-visual { min-height: 500px; }
+      .about-sticky { position: static; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-links { justify-content: flex-start; }
+    }
+
+    @media (max-width: 680px) {
+      .nav { padding: 10px; }
+      .nav-shell { border-radius: 16px; }
+      .brand { font-size: .92rem; }
+      .hero { min-height: 790px; padding: 118px 20px 42px; }
+      .hero::before { inset: 44% 0 0 0; }
+      .hero h1 { font-size: clamp(3.2rem, 17vw, 5.2rem); }
+      .hero-proof { display: none; }
+      .section { padding: 78px 20px; }
+      .service { grid-template-columns: 48px 1fr auto; gap: 12px; }
+      .service-detail { grid-column: 1 / 4; }
+      .service-detail-inner { grid-template-columns: 1fr; gap: 12px; }
+      .feature-image-wrap { min-height: 420px; }
+      .feature-points { grid-template-columns: 1fr; }
+      .water-visual { min-height: 460px; }
+      .principle { grid-template-columns: 42px 1fr; }
+      .reviews-head { align-items: start; flex-direction: column; }
+      .contact-card { border-radius: 22px; }
+      .footer-bottom { flex-direction: column; }
+      .mobile-call {
+        display: flex; position: fixed; z-index: 900; left: 14px; right: 14px; bottom: 14px; min-height: 52px;
+        background: var(--white); color: var(--ink); border-radius: 16px; box-shadow: 0 16px 50px rgba(0,0,0,.22);
+        align-items: center; justify-content: center; font-weight: 900;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="progress" aria-hidden="true"></div>
+
+  <header class="nav" id="siteNav">
+    <div class="nav-shell">
+      <a class="brand" href="#home" aria-label="Sullivan Plumbing and Gas home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Sullivan Plumbing <small>&amp; Gas • Mt Eden</small></span>
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Primary navigation">
+        <a href="#services">Services</a>
+        <a href="#gas-fitting">Gas fitting</a>
+        <a href="#hot-water">Hot water</a>
+        <a href="#rainwater">Rainwater</a>
+        <a href="#about">About</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="nav-call" href="tel:08007855486">Call 0800 785 5486 <span aria-hidden="true">↗</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="home">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">Mt Eden, Auckland</div>
+          <h1>Plumbing done with <em>care.</em></h1>
+          <p class="hero-lede">Plumbing, gas fitting, hot water and rainwater systems for homes, businesses and larger sites—backed by a straightforward, practical approach.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary magnetic" href="tel:08007855486">Call for a quote <span class="arrow">↗</span></a>
+            <a class="btn btn-ghost" href="#services">Explore services <span class="arrow">↓</span></a>
+          </div>
+          <div class="scroll-note"><i></i> Scroll to explore</div>
+        </div>
+        <aside class="hero-proof" aria-label="Service highlights">
+          <p>Sullivan Plumbing &amp; Gas is based at 7 Disraeli Street in Mt Eden and serves domestic, commercial and industrial clients.</p>
+          <div class="proof-row">
+            <span class="proof-pill">Plumbing repairs</span>
+            <span class="proof-pill">Registered gas fitting</span>
+            <span class="proof-pill">Hot water</span>
+            <span class="proof-pill">Rainwater harvesting</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <div class="ticker-item">Plumbing repairs</div><div class="ticker-item">Gas fitting</div><div class="ticker-item">Hot water systems</div><div class="ticker-item">Rainwater harvesting</div><div class="ticker-item">Mt Eden</div>
+        <div class="ticker-item">Plumbing repairs</div><div class="ticker-item">Gas fitting</div><div class="ticker-item">Hot water systems</div><div class="ticker-item">Rainwater harvesting</div><div class="ticker-item">Mt Eden</div>
+      </div>
+    </div>
+
+    <section class="section services" id="services">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><span class="section-kicker">What we do</span></div>
+          <div>
+            <h2>Useful help, without the runaround.</h2>
+            <p>The original site spans everything from everyday repairs to specialist gas, hot-water and rainwater work. This redesign brings those services into one clear place.</p>
+          </div>
+        </div>
+
+        <div class="service-list reveal">
+          <article class="service" tabindex="0" role="button" aria-expanded="false">
+            <span class="service-num">01</span><h3>Plumbing &amp; repairs</h3><span class="service-toggle" aria-hidden="true">+</span>
+            <div class="service-detail"><div class="service-detail-inner"><p>General plumbing repairs and maintenance, including the kinds of urgent water issues and replacement work that appear throughout Sullivan’s customer feedback and existing service navigation.</p><div class="tags"><span class="tag">Repairs</span><span class="tag">Maintenance</span><span class="tag">Water mains</span><span class="tag">Hot water cylinders</span></div></div></div>
+          </article>
+          <article class="service" id="gas-fitting" tabindex="0" role="button" aria-expanded="false">
+            <span class="service-num">02</span><h3>Gas fitting</h3><span class="service-toggle" aria-hidden="true">+</span>
+            <div class="service-detail"><div class="service-detail-inner"><p>Certified, registered gas fitting for repairs, installation and maintenance across residential, commercial and larger sites.</p><div class="tags"><span class="tag">Gas hobs</span><span class="tag">Gas water heating</span><span class="tag">Central heating</span><span class="tag">LPG heaters</span></div></div></div>
+          </article>
+          <article class="service" tabindex="0" role="button" aria-expanded="false">
+            <span class="service-num">03</span><h3>Hot water systems</h3><span class="service-toggle" aria-hidden="true">+</span>
+            <div class="service-detail"><div class="service-detail-inner"><p>Hot water cylinder work and gas continuous-flow systems, including Rinnai Infinity installations highlighted on the existing website.</p><div class="tags"><span class="tag">Cylinders</span><span class="tag">Rinnai Infinity</span><span class="tag">Gas water heating</span></div></div></div>
+          </article>
+          <article class="service" tabindex="0" role="button" aria-expanded="false">
+            <span class="service-num">04</span><h3>Rainwater harvesting</h3><span class="service-toggle" aria-hidden="true">+</span>
+            <div class="service-detail"><div class="service-detail-inner"><p>Rainwater tank installations and pump systems designed to collect roof water for practical uses around a property, from garden watering to laundry and toilet supply.</p><div class="tags"><span class="tag">Aqua tanks</span><span class="tag">Thin tanks</span><span class="tag">RainBank pumps</span></div></div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section feature" id="hot-water">
+      <div class="container feature-grid">
+        <div class="feature-copy reveal">
+          <span class="section-kicker" style="color:var(--aqua)">Instant hot water</span>
+          <h2>Hot water, when you need it.</h2>
+          <p>Sullivan Plumbing &amp; Gas installs Rinnai Infinity gas continuous-flow water heaters. The system heats water on demand and is installed outside, helping keep indoor space free.</p>
+          <div class="feature-points">
+            <div class="feature-point"><b>On-demand heating</b>Water is heated as it is needed.</div>
+            <div class="feature-point"><b>Outside installation</b>Designed to avoid taking up indoor living space.</div>
+            <div class="feature-point"><b>Lower-flow support</b>Designed to modulate at lower flow rates.</div>
+            <div class="feature-point"><b>High-volume use</b>The existing Sullivan page positions the system for homes needing significant hot-water supply.</div>
+          </div>
+          <a class="btn btn-ghost" href="#contact" style="margin-top:30px">Talk about hot water <span class="arrow">↓</span></a>
+        </div>
+        <div class="feature-image-wrap reveal">
+          <div class="feature-image"><img src="https://irp.cdn-website.com/32586392/dms3rep/multi/opt/Rinnai-Infinity-A26-26L-Graphite-1920w.jpg" alt="Rinnai Infinity A26 gas continuous flow water heater" loading="lazy"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section water" id="rainwater">
+      <div class="container water-grid">
+        <figure class="water-visual reveal">
+          <img src="https://irp.cdn-website.com/32586392/dms3rep/multi/opt/rainwater%2BHarvesting1-1920w.jpg" alt="Roof gutter and downpipe used for rainwater harvesting" loading="lazy">
+          <figcaption class="caption">Collect water from your roof and put it to practical use around the property.</figcaption>
+        </figure>
+        <div class="water-copy reveal">
+          <span class="section-kicker">Rainwater harvesting</span>
+          <h2>Make better use of the rain.</h2>
+          <p>Sullivan can supply and install rainwater tanks and pump systems for uses such as garden watering, car washing, pools, toilet flushing and laundry.</p>
+          <div class="mini-list">
+            <div class="mini-item"><strong>01</strong><div><b>Aqua water tanks</b><span>The existing site offers Aqua tanks in a broad range of capacities, including slimline options for tighter spaces.</span></div></div>
+            <div class="mini-item"><strong>02</strong><div><b>RainBank pump options</b><span>Surface, submersible and cabinet-mounted configurations are described on the existing site.</span></div></div>
+            <div class="mini-item"><strong>03</strong><div><b>Mains-water changeover</b><span>RainBank systems can prioritise stored rainwater and change to mains supply when the tank is empty or power is unavailable.</span></div></div>
+          </div>
+          <a class="btn" href="tel:08007855486" style="margin-top:28px;background:var(--ink);color:white;align-self:flex-start">Ask about a system <span class="arrow">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about" id="about">
+      <div class="container about-grid">
+        <div class="about-sticky reveal">
+          <span class="section-kicker">About Sullivan</span>
+          <h2>Small enough to care about the details.</h2>
+          <p>The company’s existing “About” page is clear about its priorities: treat every customer with care, respect the property, use cost-effective and environmentally appropriate materials, and aim for a fair deal.</p>
+        </div>
+        <div class="principles reveal">
+          <div class="principle"><div><h3>Every customer matters</h3><p>Domestic, commercial and industrial clients are all treated with the same care, whether the job is big or small.</p></div></div>
+          <div class="principle"><div><h3>Respect the property</h3><p>The stated expectation is to leave a customer’s property in the condition it was in before work started.</p></div></div>
+          <div class="principle"><div><h3>Practical, appropriate choices</h3><p>Sullivan says it aims to use current, cost-effective and environmentally appropriate materials and technologies.</p></div></div>
+          <div class="principle"><div><h3>A fair deal at the end</h3><p>The company explicitly positions itself around competitive pricing and fair treatment rather than prestige or luxury.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reviews" id="testimonials">
+      <div class="container">
+        <div class="reviews-head reveal">
+          <div><span class="section-kicker">What customers say</span><h2>Real notes from real jobs.</h2></div>
+          <div class="review-controls"><button id="prevReview" aria-label="Previous testimonial">←</button><button id="nextReview" aria-label="Next testimonial">→</button></div>
+        </div>
+        <div class="review-window reveal" aria-live="polite">
+          <div class="review-track" id="reviewTrack">
+            <article class="review-slide"><blockquote class="review-quote">“He was friendly, informative, tidy, and punctual. I really appreciated the service and have recommended Sullivan Plumbing to others.”</blockquote><div class="review-meta">Linley Porter • January 2025</div></article>
+            <article class="review-slide"><blockquote class="review-quote">“From day one, the service has been impeccable. Wyatt was amazing, friendly, and respectful.”</blockquote><div class="review-meta">Anna • December 2024</div></article>
+            <article class="review-slide"><blockquote class="review-quote">“Wyatt turned up quickly and had things sorted in no time.”</blockquote><div class="review-meta">Andrew • September 2024</div></article>
+            <article class="review-slide"><blockquote class="review-quote">“There was a lot of effort being made to repair the pipework in a very difficult situation… Hot showers all round tonight.”</blockquote><div class="review-meta">Susan • July 2024</div></article>
+          </div>
+          <div class="review-dots" id="reviewDots" aria-label="Testimonial navigation"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="container">
+        <div class="contact-card reveal">
+          <div class="contact-grid">
+            <div>
+              <span class="section-kicker" style="color:#cdeae6">Contact</span>
+              <h2>Tell us what needs fixing.</h2>
+              <p>For a quote or to talk through a plumbing, gas, hot-water or rainwater job, call Sullivan Plumbing &amp; Gas directly.</p>
+              <div class="contact-actions">
+                <a class="btn btn-primary magnetic" href="tel:08007855486">0800 785 5486 <span class="arrow">↗</span></a>
+              </div>
+            </div>
+            <div class="contact-info">
+              <div><span>Find us</span><strong>7 Disraeli Street<br>Mt Eden, NZ 1024</strong></div>
+              <div><span>Primary action</span><strong>Call for a quote</strong></div>
+              <div><span>Services</span><strong>Plumbing • Gas • Hot water • Rainwater</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div><div class="footer-brand">Sullivan Plumbing &amp; Gas</div><div class="footer-note">A single-page redesign consolidating the company’s existing home, about, testimonials, gas fitting, contact, Rinnai hot-water and rainwater-harvesting content.</div></div>
+      <div class="footer-links"><a href="#services">Services</a><a href="#gas-fitting">Gas fitting</a><a href="#hot-water">Hot water</a><a href="#rainwater">Rainwater</a><a href="#about">About</a><a href="#testimonials">Testimonials</a><a href="#contact">Contact</a></div>
+    </div>
+    <div class="footer-bottom"><span>© <span id="year"></span> Sullivan Plumbing &amp; Gas</span><span>Mt Eden, Auckland • 0800 785 5486</span></div>
+  </footer>
+
+  <a class="mobile-call" href="tel:08007855486">Call Sullivan • 0800 785 5486</a>
+
+  <script>
+    (() => {
+      'use strict';
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const nav = document.getElementById('siteNav');
+      const progress = document.querySelector('.progress');
+      const menuToggle = document.getElementById('menuToggle');
+      const navLinks = document.getElementById('navLinks');
+      const navAnchors = [...navLinks.querySelectorAll('a')];
+      const sections = navAnchors.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+
+      const onScroll = () => {
+        nav.classList.toggle('scrolled', window.scrollY > 30);
+        const max = document.documentElement.scrollHeight - innerHeight;
+        progress.style.width = max > 0 ? `${(scrollY / max) * 100}%` : '0%';
+        let active = sections[0];
+        sections.forEach(section => { if (section.getBoundingClientRect().top <= innerHeight * .35) active = section; });
+        navAnchors.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${active?.id}`));
+      };
+      addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+      menuToggle.addEventListener('click', () => {
+        const open = navLinks.classList.toggle('open');
+        document.body.classList.toggle('menu-open', open);
+        menuToggle.setAttribute('aria-expanded', String(open));
+        menuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      });
+      navAnchors.forEach(a => a.addEventListener('click', () => {
+        navLinks.classList.remove('open'); document.body.classList.remove('menu-open'); menuToggle.setAttribute('aria-expanded','false');
+      }));
+
+      document.querySelectorAll('.service').forEach(service => {
+        const toggle = () => {
+          const open = service.getAttribute('aria-expanded') === 'true';
+          service.setAttribute('aria-expanded', String(!open));
+          const detail = service.querySelector('.service-detail');
+          detail.style.maxHeight = !open ? `${detail.scrollHeight}px` : '0px';
+        };
+        service.addEventListener('click', toggle);
+        service.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+      });
+
+      const reveals = document.querySelectorAll('.reveal');
+      if (!reduceMotion && 'IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+          if (entry.isIntersecting) { entry.target.classList.add('in'); observer.unobserve(entry.target); }
+        }), {threshold:.12});
+        reveals.forEach(el => observer.observe(el));
+      } else reveals.forEach(el => el.classList.add('in'));
+
+      const track = document.getElementById('reviewTrack');
+      const slides = [...track.children];
+      const dotsWrap = document.getElementById('reviewDots');
+      let reviewIndex = 0;
+      slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'review-dot'; dot.setAttribute('aria-label', `Show testimonial ${i + 1}`);
+        dot.addEventListener('click', () => showReview(i)); dotsWrap.appendChild(dot);
+      });
+      const dots = [...dotsWrap.children];
+      function showReview(i) {
+        reviewIndex = (i + slides.length) % slides.length;
+        track.style.transform = `translateX(-${reviewIndex * 100}%)`;
+        dots.forEach((d, idx) => d.classList.toggle('active', idx === reviewIndex));
+      }
+      document.getElementById('prevReview').addEventListener('click', () => showReview(reviewIndex - 1));
+      document.getElementById('nextReview').addEventListener('click', () => showReview(reviewIndex + 1));
+      showReview(0);
+
+      if (!reduceMotion && matchMedia('(pointer:fine)').matches) {
+        document.querySelectorAll('.magnetic').forEach(btn => {
+          btn.addEventListener('mousemove', e => {
+            const r = btn.getBoundingClientRect();
+            btn.style.transform = `translate(${(e.clientX-r.left-r.width/2)*.08}px, ${(e.clientY-r.top-r.height/2)*.10}px)`;
+          });
+          btn.addEventListener('mouseleave', () => btn.style.transform = '');
+        });
+      }
+      document.getElementById('year').textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>
