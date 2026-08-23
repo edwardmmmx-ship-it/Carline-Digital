@@ -1,0 +1,1739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fix & Flow Plumbing and Drainage — Auckland</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0B1929;
+    --navy-mid: #112035;
+    --navy-light: #1a3050;
+    --aqua: #00B4D8;
+    --aqua-dark: #0096B7;
+    --aqua-glow: rgba(0,180,216,0.15);
+    --white: #FFFFFF;
+    --off-white: #F0F4F8;
+    --grey: #8A9BB0;
+    --grey-light: #C8D5E3;
+    --text: #E8EEF4;
+    --easing: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--navy); }
+  ::-webkit-scrollbar-thumb { background: var(--aqua-dark); border-radius: 3px; }
+
+  /* ── TYPOGRAPHY ── */
+  .display { font-family: 'Syne', sans-serif; font-weight: 800; }
+  .heading { font-family: 'Syne', sans-serif; font-weight: 700; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    padding: 0 40px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.4s var(--easing), backdrop-filter 0.4s;
+  }
+  nav.scrolled {
+    background: rgba(11,25,41,0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0,180,216,0.15);
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+  .nav-logo img {
+    height: 36px;
+    filter: brightness(0) invert(1);
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--grey-light);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta {
+    background: var(--aqua);
+    color: var(--navy) !important;
+    padding: 10px 22px;
+    border-radius: 6px;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    transition: background 0.2s, transform 0.15s !important;
+  }
+  .nav-cta:hover { background: var(--aqua-dark) !important; transform: translateY(-1px); }
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--white);
+    border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 72px; left: 0; right: 0;
+    background: rgba(11,25,41,0.97);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0,180,216,0.15);
+    padding: 24px 32px;
+    z-index: 999;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    color: var(--grey-light);
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: color 0.2s;
+  }
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-menu a:hover { color: var(--aqua); }
+  .mobile-call {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--aqua);
+    color: var(--navy) !important;
+    padding: 14px 20px;
+    border-radius: 8px;
+    font-weight: 700 !important;
+    text-align: center;
+    justify-content: center;
+    font-size: 17px !important;
+    border-bottom: none !important;
+  }
+
+  /* ── EMERGENCY BAR ── */
+  .emergency-bar {
+    position: fixed;
+    top: 72px; left: 0; right: 0;
+    background: var(--aqua);
+    color: var(--navy);
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    z-index: 998;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transform: translateY(-100%);
+    transition: transform 0.4s var(--easing);
+  }
+  .emergency-bar.visible { transform: translateY(0); }
+  .emergency-bar a { color: var(--navy); font-weight: 700; text-decoration: none; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 120px 40px 80px;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 60% 50%, rgba(0,180,216,0.08) 0%, transparent 60%),
+                linear-gradient(135deg, #0B1929 0%, #112035 50%, #0B1929 100%);
+  }
+  .pipe-svg {
+    position: absolute;
+    right: -60px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 55%;
+    opacity: 0.12;
+    pointer-events: none;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+  }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,180,216,0.12);
+    border: 1px solid rgba(0,180,216,0.3);
+    color: var(--aqua);
+    padding: 7px 16px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .hero-tag::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    background: var(--aqua);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.4); }
+  }
+  .hero-h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(48px, 7vw, 88px);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+  .hero-h1 .accent { color: var(--aqua); }
+  .hero-sub {
+    font-size: clamp(16px, 2vw, 19px);
+    color: var(--grey-light);
+    line-height: 1.65;
+    margin-bottom: 44px;
+    max-width: 520px;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 56px;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--aqua);
+    color: var(--navy);
+    padding: 16px 32px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 16px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 24px rgba(0,180,216,0.25);
+  }
+  .btn-primary:hover {
+    background: var(--aqua-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0,180,216,0.35);
+  }
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    color: var(--white);
+    padding: 16px 32px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    text-decoration: none;
+    border: 1.5px solid rgba(255,255,255,0.2);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-secondary:hover {
+    border-color: var(--aqua);
+    background: rgba(0,180,216,0.06);
+    color: var(--aqua);
+  }
+  .hero-stats {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .hero-stat {}
+  .hero-stat-num {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 32px;
+    color: var(--white);
+    line-height: 1;
+  }
+  .hero-stat-num .accent { color: var(--aqua); }
+  .hero-stat-label {
+    font-size: 13px;
+    color: var(--grey);
+    margin-top: 4px;
+    letter-spacing: 0.02em;
+  }
+  .hero-stat-divider {
+    width: 1px;
+    background: rgba(255,255,255,0.1);
+    align-self: stretch;
+  }
+
+  /* ── TRUST STRIP ── */
+  .trust-strip {
+    background: var(--navy-mid);
+    border-top: 1px solid rgba(0,180,216,0.12);
+    border-bottom: 1px solid rgba(0,180,216,0.12);
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--grey-light);
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .trust-icon {
+    color: var(--aqua);
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 100px 40px; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .section-eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--aqua);
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(32px, 4vw, 52px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+  .section-desc {
+    font-size: 17px;
+    color: var(--grey-light);
+    line-height: 1.7;
+    max-width: 540px;
+  }
+
+  /* ── SERVICES ── */
+  #services { background: var(--navy); }
+  .services-header {
+    display: flex;
+    gap: 80px;
+    align-items: flex-start;
+    margin-bottom: 64px;
+    flex-wrap: wrap;
+  }
+  .services-header-left { flex: 1; min-width: 280px; }
+  .services-header-right {
+    flex: 1;
+    min-width: 280px;
+    padding-top: 50px;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(0,180,216,0.08);
+    border: 1px solid rgba(0,180,216,0.12);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .service-card {
+    background: var(--navy-mid);
+    padding: 36px 32px;
+    cursor: pointer;
+    transition: background 0.25s, transform 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,180,216,0.06) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .service-card:hover::before { opacity: 1; }
+  .service-card:hover { background: var(--navy-light); }
+  .service-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(0,180,216,0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: var(--aqua);
+    font-size: 22px;
+    transition: background 0.25s;
+  }
+  .service-card:hover .service-icon { background: rgba(0,180,216,0.2); }
+  .service-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+  .service-desc {
+    font-size: 14px;
+    color: var(--grey);
+    line-height: 1.6;
+  }
+  .service-card.featured { grid-column: span 2; }
+
+  /* ── EMERGENCY ── */
+  #emergency {
+    background: linear-gradient(135deg, var(--aqua) 0%, #0096B7 100%);
+    padding: 80px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  #emergency::before {
+    content: '24/7';
+    position: absolute;
+    right: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 200px;
+    color: rgba(0,0,0,0.08);
+    pointer-events: none;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .emergency-content { position: relative; z-index: 1; }
+  .emergency-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(36px, 5vw, 64px);
+    color: var(--navy);
+    margin-bottom: 16px;
+    line-height: 1.05;
+  }
+  .emergency-desc {
+    font-size: 18px;
+    color: rgba(11,25,41,0.75);
+    margin-bottom: 36px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .emergency-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--navy);
+    color: var(--white);
+    padding: 18px 40px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 18px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  }
+  .emergency-btn:hover {
+    background: #0d2040;
+    transform: translateY(-2px);
+  }
+
+  /* ── HOT WATER ── */
+  #hot-water { background: var(--navy-mid); }
+  .hw-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .hw-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 12px;
+  }
+  .hw-img {
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--navy-light);
+  }
+  .hw-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s var(--easing);
+  }
+  .hw-img:hover img { transform: scale(1.04); }
+  .hw-img-tall { grid-row: span 2; }
+  .hw-img-tall img { height: 360px; }
+  .hw-img:not(.hw-img-tall) img { height: 168px; }
+  .hw-guarantees {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .hw-guarantee {
+    background: rgba(0,180,216,0.06);
+    border: 1px solid rgba(0,180,216,0.15);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .hw-guarantee-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--aqua);
+    margin-bottom: 6px;
+  }
+  .hw-guarantee-desc {
+    font-size: 13px;
+    color: var(--grey);
+    line-height: 1.5;
+  }
+
+  /* ── REVIEWS ── */
+  #reviews { background: var(--navy); }
+  .reviews-header { margin-bottom: 56px; }
+  .stars { color: #F5A623; font-size: 18px; letter-spacing: 2px; margin-bottom: 8px; }
+  .google-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    color: var(--grey-light);
+    margin-top: 12px;
+  }
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .review-card {
+    background: var(--navy-mid);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 14px;
+    padding: 28px;
+    position: relative;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+  .review-card:hover {
+    border-color: rgba(0,180,216,0.25);
+    transform: translateY(-3px);
+  }
+  .review-stars { color: #F5A623; font-size: 14px; margin-bottom: 14px; }
+  .review-text {
+    font-size: 15px;
+    color: var(--grey-light);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  .reviewer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .reviewer-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .reviewer-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--white);
+  }
+  .reviewer-time {
+    font-size: 12px;
+    color: var(--grey);
+    margin-top: 2px;
+  }
+  .review-google-icon {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    opacity: 0.4;
+    font-size: 20px;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--navy-mid); }
+  .about-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .about-values {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .about-value {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 20px;
+    border-radius: 10px;
+    transition: background 0.2s;
+  }
+  .about-value:hover { background: rgba(0,180,216,0.05); }
+  .about-value-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(0,180,216,0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--aqua);
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .about-value-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .about-value-desc { font-size: 14px; color: var(--grey); line-height: 1.6; }
+  .about-image-block {
+    position: relative;
+  }
+  .about-img-main {
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--navy-light);
+    aspect-ratio: 4/5;
+  }
+  .about-img-main img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .about-badge {
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    background: var(--aqua);
+    color: var(--navy);
+    padding: 20px 24px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0,180,216,0.3);
+  }
+  .about-badge-num {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 36px;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .about-badge-label { font-size: 13px; font-weight: 600; }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--navy); }
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .contact-info { padding-top: 8px; }
+  .contact-detail {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 28px;
+  }
+  .contact-detail-icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(0,180,216,0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--aqua);
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .contact-detail-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--grey);
+    margin-bottom: 4px;
+  }
+  .contact-detail-val {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--white);
+  }
+  .contact-detail-val a {
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .contact-detail-val a:hover { color: var(--aqua); }
+  .contact-form-wrap {
+    background: var(--navy-mid);
+    border: 1px solid rgba(0,180,216,0.12);
+    border-radius: 16px;
+    padding: 40px;
+  }
+  .form-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { margin-bottom: 18px; }
+  .form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--grey-light);
+    margin-bottom: 8px;
+    letter-spacing: 0.02em;
+  }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1.5px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 13px 16px;
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: var(--aqua);
+    background: rgba(0,180,216,0.04);
+  }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-group select option { background: var(--navy-mid); }
+  .form-submit {
+    width: 100%;
+    background: var(--aqua);
+    color: var(--navy);
+    border: none;
+    padding: 16px;
+    border-radius: 8px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    letter-spacing: 0.02em;
+    margin-top: 6px;
+  }
+  .form-submit:hover { background: var(--aqua-dark); transform: translateY(-1px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #070f1a;
+    border-top: 1px solid rgba(0,180,216,0.1);
+    padding: 60px 40px 36px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 48px;
+  }
+  .footer-logo img {
+    height: 40px;
+    filter: brightness(0) invert(1);
+    margin-bottom: 16px;
+  }
+  .footer-desc {
+    font-size: 14px;
+    color: var(--grey);
+    line-height: 1.7;
+    margin-bottom: 24px;
+    max-width: 300px;
+  }
+  .footer-social {
+    display: flex;
+    gap: 12px;
+  }
+  .footer-social a {
+    width: 38px;
+    height: 38px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--grey);
+    text-decoration: none;
+    font-size: 16px;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+  .footer-social a:hover {
+    border-color: var(--aqua);
+    color: var(--aqua);
+    background: rgba(0,180,216,0.06);
+  }
+  .footer-col-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 12px; }
+  .footer-links a {
+    color: var(--grey);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--aqua); }
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 28px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    font-size: 13px;
+    color: var(--grey);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-bottom a { color: var(--grey); text-decoration: none; }
+  .footer-bottom a:hover { color: var(--aqua); }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s var(--easing), transform 0.7s var(--easing);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* ── FLOATING CALL BUTTON (MOBILE) ── */
+  .float-call {
+    display: none;
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 900;
+    background: var(--aqua);
+    color: var(--navy);
+    padding: 16px 36px;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 16px;
+    text-decoration: none;
+    box-shadow: 0 8px 32px rgba(0,180,216,0.45);
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+  }
+  .float-call svg { width: 20px; height: 20px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .service-card.featured { grid-column: span 1; }
+    .hw-layout { grid-template-columns: 1fr; gap: 48px; }
+    .hw-gallery { max-width: 500px; }
+    .about-layout { grid-template-columns: 1fr; gap: 48px; }
+    .about-image-block { order: -1; max-width: 400px; }
+    .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 24px; }
+    section { padding: 72px 24px; }
+    #emergency { padding: 72px 24px; }
+    .trust-strip { padding: 16px 24px; gap: 24px; }
+    .trust-item { font-size: 13px; }
+    #hero { padding: 120px 24px 72px; }
+    .hero-stats { gap: 28px; }
+    .hero-stat-num { font-size: 26px; }
+    .nav-links { display: none; }
+    .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .float-call { display: flex; }
+    .services-grid { grid-template-columns: 1fr; gap: 2px; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .contact-layout { grid-template-columns: 1fr; gap: 48px; }
+    .form-row { grid-template-columns: 1fr; }
+    .contact-form-wrap { padding: 28px 20px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+    #emergency::before { font-size: 120px; right: -10px; }
+    .pipe-svg { display: none; }
+    .hw-guarantees { grid-template-columns: 1fr; }
+    footer { padding: 48px 24px 100px; }
+    .about-badge { bottom: -16px; left: -10px; }
+    .about-badge-num { font-size: 28px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  /* ── WATER FLOW ANIMATION ── */
+  @keyframes flowDash {
+    to { stroke-dashoffset: 0; }
+  }
+  @keyframes dropFade {
+    0% { opacity: 0; transform: translateY(-8px); }
+    50% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(16px); }
+  }
+  .flow-line { stroke-dasharray: 800; stroke-dashoffset: 800; animation: flowDash 3s ease forwards; }
+  .flow-drop { animation: dropFade 2.4s infinite; }
+
+  /* ── COUNTER ANIMATION ── */
+  .counter { display: inline-block; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a href="#hero" class="nav-logo">
+    <img src="https://fixflow.co.nz/wp-content/uploads/2022/07/fix-flow-small.png" alt="Fix & Flow Plumbing">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#hot-water">Hot Water</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#services" class="mobile-link">Services</a>
+  <a href="#hot-water" class="mobile-link">Hot Water Cylinders</a>
+  <a href="#reviews" class="mobile-link">Reviews</a>
+  <a href="#about" class="mobile-link">About Us</a>
+  <a href="tel:02041884872" class="mobile-call">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+    Call 020-4188-4872
+  </a>
+  <a href="#contact" class="mobile-link">Get a Quote</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+
+  <!-- Pipe SVG illustration -->
+  <svg class="pipe-svg" viewBox="0 0 600 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Main vertical pipe -->
+    <rect x="260" y="0" width="60" height="700" rx="10" fill="rgba(0,180,216,0.08)" stroke="rgba(0,180,216,0.2)" stroke-width="1.5"/>
+    <!-- Horizontal branch left -->
+    <rect x="0" y="200" width="260" height="50" rx="10" fill="rgba(0,180,216,0.06)" stroke="rgba(0,180,216,0.15)" stroke-width="1.5"/>
+    <!-- Horizontal branch right -->
+    <rect x="320" y="400" width="280" height="50" rx="10" fill="rgba(0,180,216,0.06)" stroke="rgba(0,180,216,0.15)" stroke-width="1.5"/>
+    <!-- Small branch down -->
+    <rect x="80" y="250" width="50" height="200" rx="8" fill="rgba(0,180,216,0.05)" stroke="rgba(0,180,216,0.12)" stroke-width="1"/>
+    <!-- Flow lines -->
+    <line class="flow-line" x1="290" y1="50" x2="290" y2="650" stroke="rgba(0,180,216,0.5)" stroke-width="3" stroke-linecap="round" style="animation-delay:0.5s; stroke-dasharray:600; stroke-dashoffset:600;"/>
+    <line class="flow-line" x1="50" y1="225" x2="260" y2="225" stroke="rgba(0,180,216,0.4)" stroke-width="2.5" stroke-linecap="round" style="animation-delay:1.2s; stroke-dasharray:210; stroke-dashoffset:210;"/>
+    <line class="flow-line" x1="320" y1="425" x2="590" y2="425" stroke="rgba(0,180,216,0.4)" stroke-width="2.5" stroke-linecap="round" style="animation-delay:1.8s; stroke-dasharray:270; stroke-dashoffset:270;"/>
+    <!-- Water drops -->
+    <circle class="flow-drop" cx="105" cy="450" r="5" fill="rgba(0,180,216,0.6)" style="animation-delay:2.2s;"/>
+    <circle class="flow-drop" cx="105" cy="480" r="4" fill="rgba(0,180,216,0.4)" style="animation-delay:2.8s;"/>
+    <!-- Connectors/joints -->
+    <circle cx="260" cy="225" r="18" fill="rgba(0,180,216,0.12)" stroke="rgba(0,180,216,0.3)" stroke-width="1.5"/>
+    <circle cx="320" cy="425" r="18" fill="rgba(0,180,216,0.12)" stroke="rgba(0,180,216,0.3)" stroke-width="1.5"/>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-tag">Auckland's Trusted Plumbers</div>
+    <h1 class="hero-h1">
+      Plumbing done<br>
+      <span class="accent">right.</span>
+    </h1>
+    <p class="hero-sub">
+      From a leaking tap to a burst pipe at 2am — Fix & Flow responds fast, works clean, and backs every job with a 24-month guarantee.
+    </p>
+    <div class="hero-actions">
+      <a href="tel:02041884872" class="btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Call 020-4188-4872
+      </a>
+      <a href="#contact" class="btn-secondary">
+        Get a free quote
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num"><span class="counter" data-target="50">0</span><span class="accent">+</span></div>
+        <div class="hero-stat-label">Five-star reviews</div>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num"><span class="counter" data-target="10">0</span><span class="accent">+</span></div>
+        <div class="hero-stat-label">Years experience</div>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num"><span class="accent">24</span></div>
+        <div class="hero-stat-label">Month workmanship guarantee</div>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num"><span class="accent">24/7</span></div>
+        <div class="hero-stat-label">Emergency response</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-item">
+    <svg class="trust-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    Licensed & Insured
+  </div>
+  <div class="trust-item">
+    <svg class="trust-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    Same-day Emergency Response
+  </div>
+  <div class="trust-item">
+    <svg class="trust-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+    24-Month Workmanship Guarantee
+  </div>
+  <div class="trust-item">
+    <svg class="trust-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+    Residential & Commercial
+  </div>
+  <div class="trust-item">
+    <svg class="trust-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    Serving All of Auckland
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="services-header">
+      <div class="services-header-left">
+        <div class="section-eyebrow reveal">What we do</div>
+        <h2 class="section-title reveal reveal-delay-1">Every plumbing<br>problem. Sorted.</h2>
+      </div>
+      <div class="services-header-right">
+        <p class="section-desc reveal reveal-delay-2">
+          Fix & Flow handles everything from routine maintenance to complex installations. Whatever your situation, we bring the right tools, the right knowledge, and a friendly attitude.
+        </p>
+      </div>
+    </div>
+
+    <div class="services-grid reveal">
+      <div class="service-card featured">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="service-name">24/7 Emergency Plumbing</div>
+        <div class="service-desc">Burst pipes, overflowing drains, no hot water — when it can't wait until morning, neither do we. Our team is on call around the clock and aims to be on-site within the hour.</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22a7 7 0 007-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 007 7z"/></svg>
+        </div>
+        <div class="service-name">Blocked Drains</div>
+        <div class="service-desc">Camera inspection and hydro-jet technology to clear any blockage fast — tree roots, grease, or debris.</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4.03 3-9 3S3 13.66 3 12"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/></svg>
+        </div>
+        <div class="service-name">Hot Water Cylinders</div>
+        <div class="service-desc">Supply, installation, and repair of Rheem and Rinnai cylinders. Continuous flow (Infinity/Califont) units too.</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="service-name">New Builds</div>
+        <div class="service-desc">Complete plumbing fit-outs for new homes — drainage, water service, gas, hot water, stormwater and more.</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
+        </div>
+        <div class="service-name">Tapware & Leaking Taps</div>
+        <div class="service-desc">Repair or full replacement of kitchen, bathroom, garden and laundry taps. Stop that drip before it costs you.</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 9H9M15 15H9"/></svg>
+        </div>
+        <div class="service-name">Toilet Repairs & Installs</div>
+        <div class="service-desc">Blocked, running, or completely dead — we fix, unblock, and fully replace toilet suites when needed.</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="service-name">Burst Pipes</div>
+        <div class="service-desc">Copper, polyethylene, brass, auspex — we repair all pipe types and conduct full leak detection before leaving.</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 19.07a10 10 0 010-14.14"/></svg>
+        </div>
+        <div class="service-name">Maintenance Plumbing</div>
+        <div class="service-desc">Regular check-ups that catch small issues before they become expensive disasters. Preventive care for your home.</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+        </div>
+        <div class="service-name">Gas Fitting</div>
+        <div class="service-desc">Safe, compliant gas line installation and servicing for residential and commercial properties throughout Auckland.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EMERGENCY CTA -->
+<section id="emergency">
+  <div class="emergency-content">
+    <h2 class="emergency-title">Plumbing emergency?</h2>
+    <p class="emergency-desc">Don't wait. Our team is on call 24 hours a day, 7 days a week — including weekends and public holidays.</p>
+    <a href="tel:02041884872" class="emergency-btn">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      Call 020-4188-4872
+    </a>
+  </div>
+</section>
+
+<!-- HOT WATER -->
+<section id="hot-water">
+  <div class="container">
+    <div class="hw-layout">
+      <div>
+        <div class="section-eyebrow reveal">Specialist service</div>
+        <h2 class="section-title reveal reveal-delay-1">Hot Water<br>Cylinders</h2>
+        <p class="section-desc reveal reveal-delay-2">
+          No hot water is more than an inconvenience — it disrupts your whole household. Fix & Flow specialises in the installation, repair, and maintenance of all cylinder types across Auckland.
+        </p>
+        <p style="color: var(--grey); font-size: 15px; margin-top: 16px; line-height: 1.7;" class="reveal reveal-delay-2">
+          We work with leading brands including <strong style="color: var(--grey-light);">Rheem</strong> and <strong style="color: var(--grey-light);">Rinnai</strong>, and supply and install continuous flow (Infinity/Califont) units — ideal for smaller homes where space matters.
+        </p>
+        <div class="hw-guarantees reveal reveal-delay-3">
+          <div class="hw-guarantee">
+            <div class="hw-guarantee-title">24-Month Guarantee</div>
+            <div class="hw-guarantee-desc">All installations and repairs carry our workmanship guarantee.</div>
+          </div>
+          <div class="hw-guarantee">
+            <div class="hw-guarantee-title">Manufacturer Warranty</div>
+            <div class="hw-guarantee-desc">Cylinders are supported by the full manufacturer's warranty.</div>
+          </div>
+          <div class="hw-guarantee">
+            <div class="hw-guarantee-title">Free Quote</div>
+            <div class="hw-guarantee-desc">Get an upfront quote before any work begins — no surprises.</div>
+          </div>
+          <div class="hw-guarantee">
+            <div class="hw-guarantee-title">High-Quality Parts</div>
+            <div class="hw-guarantee-desc">Only reputable brands and parts used on every job.</div>
+          </div>
+        </div>
+        <div style="margin-top: 36px;" class="reveal">
+          <a href="#contact" class="btn-primary">Get a hot water quote</a>
+        </div>
+      </div>
+      <div class="hw-gallery reveal">
+        <div class="hw-img hw-img-tall">
+          <img src="https://fixflow.co.nz/wp-content/uploads/2024/03/1.jpg" alt="Hot water cylinder installation" loading="lazy">
+        </div>
+        <div class="hw-img">
+          <img src="https://fixflow.co.nz/wp-content/uploads/2024/03/2.jpg" alt="Plumbing work" loading="lazy">
+        </div>
+        <div class="hw-img">
+          <img src="https://fixflow.co.nz/wp-content/uploads/2024/03/3.jpg" alt="Hot water system" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="container">
+    <div class="reviews-header">
+      <div class="section-eyebrow reveal">What customers say</div>
+      <h2 class="section-title reveal reveal-delay-1">50+ five-star reviews<br>on Google</h2>
+      <div class="stars reveal reveal-delay-2">★★★★★</div>
+      <a href="https://goo.gl/maps/o5jDWrZWMTBf5dws6" target="_blank" rel="noopener" class="google-badge reveal reveal-delay-2">
+        <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+        Read all reviews on Google
+      </a>
+    </div>
+
+    <div class="reviews-grid">
+      <div class="review-card reveal">
+        <span class="review-google-icon">G</span>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Another great experience with Fix & Flow. I've used them a number of times, and they are always efficient, honest and on time. Special thanks to Farman who is very friendly and professional. A smooth, worry-free process every single time."</p>
+        <div class="reviewer">
+          <img class="reviewer-avatar" src="https://lh3.googleusercontent.com/a/ACg8ocIkkYG2cp13kOck3Sh-1JRDW8OO4A0WK0yF3anAtgn6YOqagA=s128-c0x00000000-cc-rp-mo" alt="I Tay" loading="lazy">
+          <div>
+            <div class="reviewer-name">I Tay</div>
+            <div class="reviewer-time">3 months ago</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card reveal reveal-delay-1">
+        <span class="review-google-icon">G</span>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Ferman and his guys did a really good job replacing my hot water cylinder. Communication was good and friendly and the price was very reasonable. Recommend!"</p>
+        <div class="reviewer">
+          <img class="reviewer-avatar" src="https://lh3.googleusercontent.com/a/ACg8ocLg6z5mPNq6-EvZJmj9umZFjRjen_IBl9a51PKAdasU7vwvsg=s128-c0x00000000-cc-rp-mo" alt="James Park" loading="lazy">
+          <div>
+            <div class="reviewer-name">James Park</div>
+            <div class="reviewer-time">3 months ago</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card reveal reveal-delay-2">
+        <span class="review-google-icon">G</span>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Darren was really helpful — the drain we needed unblocking was difficult to access and he was happy to go the extra mile to avoid any mess. Got it sorted same day and gave great advice. Highly recommend."</p>
+        <div class="reviewer">
+          <img class="reviewer-avatar" src="https://lh3.googleusercontent.com/a-/ALV-UjXtqhB535KE_Gk2Sho0WqORMUMicOnEsbOlyboQnwhVxYrM6NSI=s128-c0x00000000-cc-rp-mo" alt="Richard Washer" loading="lazy">
+          <div>
+            <div class="reviewer-name">Richard Washer</div>
+            <div class="reviewer-time">4 months ago</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card reveal">
+        <span class="review-google-icon">G</span>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"My wife and I needed an urgent sewage blockage attended to at our rental in Parnell. By chance we approached Fermanullah — my goodness, what a great choice. Exceptional service."</p>
+        <div class="reviewer">
+          <img class="reviewer-avatar" src="https://lh3.googleusercontent.com/a-/ALV-UjUGNZdFhbvdJWonnE6Tuw5TGXF7ybYyZuEICb02U7kXyCQjzVGY2w=s128-c0x00000000-cc-rp-mo-ba3" alt="Allan Fitzgerald" loading="lazy">
+          <div>
+            <div class="reviewer-name">Allan Fitzgerald</div>
+            <div class="reviewer-time">6 months ago</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card reveal reveal-delay-1">
+        <span class="review-google-icon">G</span>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Fix and Flow did an excellent job replacing back-to-back showers where there had been a ceiling leak. Simon is a genuine problem solver who identified issues and found innovative solutions. His team all took pride in their work."</p>
+        <div class="reviewer">
+          <img class="reviewer-avatar" src="https://lh3.googleusercontent.com/a/ACg8ocLaigiyvkgsrLyeAdsj_gpDLhESFqzEYRRpNsQPbShdzl1i0A=s128-c0x00000000-cc-rp-mo" alt="John Innes" loading="lazy">
+          <div>
+            <div class="reviewer-name">John Innes</div>
+            <div class="reviewer-time">3 years ago</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card reveal reveal-delay-2" style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; background: rgba(0,180,216,0.04); border: 1.5px dashed rgba(0,180,216,0.25);">
+        <div style="font-size:48px; color:var(--aqua); margin-bottom:12px; font-family:'Syne',sans-serif; font-weight:800;">50+</div>
+        <div style="font-size:15px; color:var(--grey-light); margin-bottom:20px; line-height:1.5;">five-star reviews from Auckland customers across Google</div>
+        <a href="https://goo.gl/maps/o5jDWrZWMTBf5dws6" target="_blank" rel="noopener" class="btn-secondary" style="font-size:14px; padding:12px 24px;">
+          Read them all →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-layout">
+      <div>
+        <div class="section-eyebrow reveal">Who we are</div>
+        <h2 class="section-title reveal reveal-delay-1">Auckland plumbers<br>you can actually trust</h2>
+        <p style="color: var(--grey-light); font-size: 17px; line-height: 1.7; margin-bottom: 8px;" class="reveal reveal-delay-2">
+          Fix & Flow was built on a simple idea: plumbing work should be honest, reliable, and done properly the first time. Based in Auckland, we bring over a decade of experience to every job — from a dripping tap to a full new-build fit-out.
+        </p>
+        <p style="color: var(--grey); font-size: 16px; line-height: 1.7;" class="reveal reveal-delay-2">
+          We serve residential homeowners, landlords, property managers, and commercial clients across the entire Auckland region.
+        </p>
+        <div class="about-values">
+          <div class="about-value reveal">
+            <div class="about-value-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <div class="about-value-title">Honesty & Integrity</div>
+              <div class="about-value-desc">We tell you what the problem actually is — not what maximises a bill. Clear pricing, no hidden charges.</div>
+            </div>
+          </div>
+          <div class="about-value reveal reveal-delay-1">
+            <div class="about-value-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div>
+              <div class="about-value-title">Quality Workmanship</div>
+              <div class="about-value-desc">Every job is backed by our 24-month guarantee. We stand behind our work, full stop.</div>
+            </div>
+          </div>
+          <div class="about-value reveal reveal-delay-2">
+            <div class="about-value-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <div class="about-value-title">Rapid Response</div>
+              <div class="about-value-desc">Whether it's a planned job or an emergency, we arrive when we say we will.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="about-image-block reveal">
+        <div class="about-img-main">
+          <img src="https://images.unsplash.com/photo-1607400201515-c2c41c07d307?w=600&q=80" alt="Professional plumber at work" loading="lazy">
+        </div>
+        <div class="about-badge">
+          <div class="about-badge-num">10+</div>
+          <div class="about-badge-label">Years in Auckland</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div style="margin-bottom: 56px;">
+      <div class="section-eyebrow reveal">Get in touch</div>
+      <h2 class="section-title reveal reveal-delay-1">Ready to get started?</h2>
+    </div>
+    <div class="contact-layout">
+      <div class="contact-info">
+        <div class="contact-detail reveal">
+          <div class="contact-detail-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div>
+            <div class="contact-detail-label">Phone</div>
+            <div class="contact-detail-val"><a href="tel:02041884872">020 4188 4872</a></div>
+          </div>
+        </div>
+        <div class="contact-detail reveal reveal-delay-1">
+          <div class="contact-detail-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="contact-detail-label">Email</div>
+            <div class="contact-detail-val"><a href="mailto:info@fixflow.co.nz">info@fixflow.co.nz</a></div>
+          </div>
+        </div>
+        <div class="contact-detail reveal reveal-delay-2">
+          <div class="contact-detail-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <div class="contact-detail-label">Emergency Hours</div>
+            <div class="contact-detail-val">24/7 — including weekends</div>
+          </div>
+        </div>
+        <div class="contact-detail reveal reveal-delay-3">
+          <div class="contact-detail-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="contact-detail-label">Service Area</div>
+            <div class="contact-detail-val">Greater Auckland Region</div>
+          </div>
+        </div>
+
+        <div style="margin-top: 40px; padding: 28px; background: var(--navy-mid); border: 1px solid rgba(0,180,216,0.12); border-radius: 14px;" class="reveal">
+          <div style="font-family:'Syne',sans-serif; font-weight:700; font-size:17px; color:var(--white); margin-bottom:12px;">Got a plumbing emergency?</div>
+          <div style="font-size:14px; color:var(--grey); margin-bottom:20px; line-height:1.6;">Don't fill out a form — call us directly. We're available right now.</div>
+          <a href="tel:02041884872" class="btn-primary" style="width:100%; justify-content:center;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            Call 020-4188-4872
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-form-wrap reveal reveal-delay-1">
+        <div class="form-title">Request a free quote</div>
+        <form id="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">Name *</label>
+              <input type="text" id="fname" name="name" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+              <label for="fphone">Phone *</label>
+              <input type="tel" id="fphone" name="phone" placeholder="Your phone number" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="femail">Email *</label>
+            <input type="email" id="femail" name="email" placeholder="your@email.com" required>
+          </div>
+          <div class="form-group">
+            <label for="fsuburb">Suburb / Location *</label>
+            <input type="text" id="fsuburb" name="suburb" placeholder="e.g. Ponsonby, Mt Eden..." required>
+          </div>
+          <div class="form-group">
+            <label for="fservice">Service needed</label>
+            <select id="fservice" name="service">
+              <option value="">— Select a service —</option>
+              <option>Emergency Plumbing</option>
+              <option>Blocked Drain</option>
+              <option>Hot Water Cylinder</option>
+              <option>Leaking Tap / Tapware</option>
+              <option>Burst Pipe</option>
+              <option>Toilet Repair / Replacement</option>
+              <option>New Build Plumbing</option>
+              <option>Gas Fitting</option>
+              <option>Maintenance / General Repair</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="fmessage">Describe the issue</label>
+            <textarea id="fmessage" name="message" placeholder="Tell us what's happening..."></textarea>
+          </div>
+          <button type="submit" class="form-submit" id="submit-btn">Send Request</button>
+          <div id="form-success" style="display:none; text-align:center; padding:20px; color:var(--aqua); font-weight:600; font-size:16px;">
+            ✓ Thanks! We'll be in touch shortly.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-logo">
+        <img src="https://fixflow.co.nz/wp-content/uploads/2022/07/fix-flow-small.png" alt="Fix & Flow Plumbing">
+        <p class="footer-desc">Auckland's trusted plumbing and drainage specialists. Available 24/7 for emergencies, backed by a 24-month workmanship guarantee.</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/fixflowplumbingnz" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/fixflowplumbing/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://goo.gl/maps/o5jDWrZWMTBf5dws6" target="_blank" rel="noopener" aria-label="Google Reviews">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="#services">24/7 Emergency</a></li>
+          <li><a href="#services">Blocked Drains</a></li>
+          <li><a href="#hot-water">Hot Water Cylinders</a></li>
+          <li><a href="#services">Burst Pipes</a></li>
+          <li><a href="#services">Tapware</a></li>
+          <li><a href="#services">Toilets</a></li>
+          <li><a href="#services">New Builds</a></li>
+          <li><a href="#services">Gas Fitting</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <ul class="footer-links">
+          <li><a href="tel:02041884872">020 4188 4872</a></li>
+          <li><a href="mailto:info@fixflow.co.nz">info@fixflow.co.nz</a></li>
+          <li><a href="#contact">Get a Quote</a></li>
+          <li><a href="#reviews">Our Reviews</a></li>
+          <li><a href="#about">About Us</a></li>
+        </ul>
+        <div style="margin-top:24px; padding:16px; background:rgba(0,180,216,0.07); border-radius:10px; border:1px solid rgba(0,180,216,0.15);">
+          <div style="font-size:12px; color:var(--grey); margin-bottom:4px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase;">Emergencies</div>
+          <div style="font-size:20px; font-weight:700; font-family:'Syne',sans-serif; color:var(--aqua);">24/7 Available</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Fix & Flow Plumbing and Drainage. All rights reserved.</span>
+      <span>Serving Greater Auckland</span>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING CALL BUTTON (MOBILE) -->
+<a href="tel:02041884872" class="float-call">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+  Call Now — 24/7
+</a>
+
+<script>
+  // ── NAV SCROLL BEHAVIOUR ──
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  // ── HAMBURGER ──
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+  document.querySelectorAll('.mobile-link, .mobile-call').forEach(link => {
+    link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  });
+
+  // ── SCROLL REVEAL ──
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  // ── COUNTER ANIMATION ──
+  function animateCounter(el) {
+    const target = parseInt(el.getAttribute('data-target'));
+    let start = 0;
+    const duration = 1600;
+    const startTime = performance.now();
+    const step = (now) => {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(eased * target);
+      if (progress < 1) requestAnimationFrame(step);
+      else el.textContent = target;
+    };
+    requestAnimationFrame(step);
+  }
+  const counters = document.querySelectorAll('.counter');
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        counterObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => counterObserver.observe(c));
+
+  // ── FORM HANDLER (no real submission — mailto fallback) ──
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    const form = document.getElementById('contact-form');
+    const success = document.getElementById('form-success');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    // Build mailto as fallback
+    const name = document.getElementById('fname').value;
+    const email = document.getElementById('femail').value;
+    const phone = document.getElementById('fphone').value;
+    const suburb = document.getElementById('fsuburb').value;
+    const service = document.getElementById('fservice').value;
+    const message = document.getElementById('fmessage').value;
+    const body = `Name: ${name}\nPhone: ${phone}\nSuburb: ${suburb}\nService: ${service}\n\n${message}`;
+    const mailto = `mailto:info@fixflow.co.nz?subject=Quote Request from ${encodeURIComponent(name)}&body=${encodeURIComponent(body)}`;
+    setTimeout(() => {
+      window.location.href = mailto;
+      form.style.display = 'none';
+      success.style.display = 'block';
+    }, 600);
+  }
+
+  // ── SMOOTH ANCHOR SCROLL ──
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const offset = 80;
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
+<!-- ═══════════════════════════════════════
+     CARLINE DIGITAL — BACK BAR
+     (injected — not part of original site)
+════════════════════════════════════════════ -->
+<style>
+#cd-back-bar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 2147483647;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 11px 24px;
+  background: rgba(14, 13, 10, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(201, 168, 76, 0.3);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  box-sizing: border-box;
+}
+#cd-back-bar * { box-sizing: border-box; }
+#cd-back-link {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 8px;
+  color: #C9A84C !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+  text-decoration: none !important;
+  text-transform: uppercase !important;
+  transition: opacity 0.2s;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+#cd-back-link:hover { opacity: 0.7 !important; }
+#cd-back-link svg { flex-shrink: 0; }
+#cd-brand-note {
+  font-size: 11px;
+  color: rgba(244, 240, 232, 0.4);
+  letter-spacing: 0.05em;
+  font-weight: 400;
+}
+#cd-dismiss-btn {
+  background: none !important;
+  border: none !important;
+  cursor: pointer;
+  color: rgba(244, 240, 232, 0.3) !important;
+  padding: 2px 6px !important;
+  line-height: 1;
+  font-size: 14px !important;
+  font-family: inherit;
+  transition: color 0.2s;
+}
+#cd-dismiss-btn:hover { color: rgba(244, 240, 232, 0.7) !important; }
+</style>
+<div id="cd-back-bar">
+  <a id="cd-back-link" href="https://edwardmmmx-ship-it.github.io/Carline-Digital/">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 5l-7 7 7 7"/></svg>
+    Back to Carline Digital
+  </a>
+  <span id="cd-brand-note">Designed by Carline Digital</span>
+  <button id="cd-dismiss-btn" onclick="document.getElementById('cd-back-bar').remove()" aria-label="Dismiss">&#x2715;</button>
+</div>
+
+</body>
+</html>
