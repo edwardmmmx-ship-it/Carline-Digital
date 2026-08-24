@@ -7,7 +7,7 @@
     projects/auckland-plumber/
     projects/all-things-plumbing/
     projects/fix-flow/
-    projects/la-once-mil/
+    projects/las-de-santa-fe/
   ─────────────────────────────────────────────────────
 -->
 <html lang="en">
@@ -249,10 +249,9 @@ button { font-family: var(--sans); cursor: pointer; }
 .project-card:last-child {
   grid-column: 1 / -1;
 }
-.project-card:last-child .project-preview-area img {
-  max-height: 520px;
-  object-fit: cover;
-  object-position: top center;
+.project-card:last-child .project-preview-area {
+  height: min(50.35vw, 520px);
+  aspect-ratio: auto;
 }
 
 .project-card {
@@ -285,20 +284,54 @@ button { font-family: var(--sans); cursor: pointer; }
 .browser-dot { width: 8px; height: 8px; border-radius: 50%; }
 .project-preview-area {
   width: 100%;
+  aspect-ratio: 1440 / 725;
   overflow: hidden;
   background: var(--black);
   position: relative;
 }
-.project-preview-area img {
-  width: 100%;
-  height: auto;
+.project-preview-area iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1440px;
+  height: 1000px;
+  border: none;
   display: block;
-  transition: transform 0.5s var(--ease-out);
   background: var(--surface2);
+  transform-origin: top left;
+  pointer-events: none;
 }
-.project-card:hover .project-preview-area img {
-  transform: scale(1.015);
+.project-preview-area.is-active iframe {
+  pointer-events: auto;
 }
+.project-preview-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: transparent;
+  cursor: pointer;
+}
+.project-preview-overlay::after {
+  content: 'Click to interact';
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  padding: 7px 11px;
+  border: 1px solid rgba(244,240,232,0.16);
+  border-radius: 3px;
+  background: rgba(14,13,10,0.74);
+  backdrop-filter: blur(10px);
+  color: var(--white2);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0.82;
+  transition: opacity 0.2s var(--ease);
+}
+.project-preview-overlay:hover::after { opacity: 1; }
 
 /* Info strip — compact, secondary */
 .project-info {
@@ -339,177 +372,6 @@ button { font-family: var(--sans); cursor: pointer; }
   font-size: 13px;
   color: var(--muted);
   line-height: 1.65;
-}
-
-/* ────────────────────────────────────────────
-   INTERACTIVE PROJECT PREVIEWS
-──────────────────────────────────────────── */
-.project-preview-area {
-  height: 500px;
-  min-height: 500px;
-}
-
-.browser-bar {
-  min-height: 42px;
-}
-
-.portfolio-live-ui.browser-address {
-  margin-left: 10px;
-  min-width: 0;
-  flex: 1;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  padding: 0 10px;
-  border: 1px solid var(--border2);
-  border-radius: 4px;
-  background: rgba(14,13,10,0.45);
-  color: var(--muted2);
-  font-size: 10px;
-  letter-spacing: 0.01em;
-  overflow: hidden;
-}
-.portfolio-live-ui.browser-address svg { flex-shrink: 0; opacity: 0.7; }
-.portfolio-live-ui.browser-address span {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.portfolio-live-ui.live-preview-shell {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 50% 38%, rgba(201,168,76,0.10), transparent 45%),
-    var(--black);
-}
-
-.portfolio-live-ui.live-preview-shell iframe {
-  width: 100%;
-  height: 100%;
-  border: 0;
-  display: block;
-  background: #fff;
-  opacity: 0;
-  transition: opacity 0.35s var(--ease);
-}
-.portfolio-live-ui.live-preview-shell.is-active iframe { opacity: 1; }
-
-.portfolio-live-ui.preview-gate {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  padding: 32px;
-  text-align: center;
-  background:
-    linear-gradient(180deg, rgba(14,13,10,0.16), rgba(14,13,10,0.76)),
-    radial-gradient(circle at 50% 40%, rgba(201,168,76,0.12), transparent 50%);
-  backdrop-filter: blur(2px);
-  transition: opacity 0.3s var(--ease), visibility 0.3s;
-}
-.portfolio-live-ui.live-preview-shell.is-active .preview-gate {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-
-.portfolio-live-ui.preview-kicker {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-.portfolio-live-ui.preview-title {
-  font-family: var(--display);
-  font-size: clamp(26px, 3vw, 38px);
-  font-style: italic;
-  font-weight: 600;
-  line-height: 1.05;
-  color: var(--white);
-}
-.portfolio-live-ui.preview-hint {
-  max-width: 360px;
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.6;
-}
-.portfolio-live-ui.explore-preview-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  margin-top: 4px;
-  padding: 11px 18px;
-  border: 1px solid var(--gold-line);
-  border-radius: 3px;
-  background: var(--gold);
-  color: var(--black);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  transition: transform 0.18s var(--ease), opacity 0.18s;
-}
-.portfolio-live-ui.explore-preview-btn:hover { transform: translateY(-2px); opacity: 0.92; }
-
-.portfolio-live-ui.preview-loading {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  background: var(--black);
-  color: var(--muted);
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-.portfolio-live-ui.live-preview-shell.is-loading .preview-loading { display: flex; }
-.portfolio-live-ui.live-preview-shell.is-active .preview-loading { display: none; }
-
-.portfolio-live-ui.project-actions {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  margin-top: 18px;
-  padding-top: 16px;
-  border-top: 1px solid var(--border);
-}
-.portfolio-live-ui.preview-status {
-  color: var(--muted2);
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-.portfolio-live-ui.view-full-site {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--gold);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  transition: color 0.2s, transform 0.2s var(--ease);
-}
-.portfolio-live-ui.view-full-site:hover { color: var(--white); transform: translateX(2px); }
-
-@media (max-width: 960px) {
-  .project-preview-area { height: 460px; min-height: 460px; }
-}
-@media (max-width: 600px) {
-  .project-preview-area { height: 420px; min-height: 420px; }
-  .portfolio-live-ui.browser-address { font-size: 9px; }
-  .portfolio-live-ui.project-actions { align-items: flex-start; flex-direction: column; }
 }
 
 /* ────────────────────────────────────────────
@@ -974,26 +836,10 @@ footer {
             <div class="browser-dot" style="background:#FDBC2C"></div>
             <div class="browser-dot" style="background:#2AC340"></div>
           </div>
-          <div class="portfolio-live-ui browser-address" aria-hidden="true">
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>
-            <span>carlinedigital.com/projects/auckland-plumber/</span>
-          </div>
         </div>
         <div class="project-preview-area">
-          <img id="img-apd" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Auckland Plumber Drainlayer website screenshot" style="display:none">
-          <div class="portfolio-live-ui live-preview-shell" data-preview-url="/projects/auckland-plumber/">
-            <iframe title="Interactive preview of Auckland Plumber Drainlayer" loading="lazy"></iframe>
-            <div class="portfolio-live-ui preview-loading" aria-hidden="true">Loading preview…</div>
-            <div class="portfolio-live-ui preview-gate">
-              <div class="portfolio-live-ui preview-kicker">Live website preview</div>
-              <div class="portfolio-live-ui preview-title">Auckland Plumber Drainlayer</div>
-              <div class="portfolio-live-ui preview-hint">Open the live preview to scroll, click and explore the website without leaving this page.</div>
-              <button type="button" class="portfolio-live-ui explore-preview-btn" aria-label="Explore live preview of Auckland Plumber Drainlayer">
-                Explore preview
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </button>
-            </div>
-          </div>
+          <iframe src="projects/auckland-plumber/" title="Auckland Plumber Drainlayer live website preview" loading="lazy" tabindex="-1"></iframe>
+          <div class="project-preview-overlay" role="button" tabindex="0" aria-label="Activate Auckland Plumber Drainlayer live website preview"></div>
         </div>
       </div>
       <div class="project-info">
@@ -1003,13 +849,6 @@ footer {
         </div>
         <div class="project-name">Auckland Plumber Drainlayer</div>
         <p class="project-desc">Warm, editorial identity that stands apart from every other trades website in the market.</p>
-        <div class="portfolio-live-ui project-actions">
-          <span class="portfolio-live-ui preview-status">Interactive preview</span>
-          <a class="portfolio-live-ui view-full-site" href="/projects/auckland-plumber/" target="_blank" rel="noopener">
-            View full site
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-          </a>
-        </div>
       </div>
     </div>
 
@@ -1022,26 +861,10 @@ footer {
             <div class="browser-dot" style="background:#FDBC2C"></div>
             <div class="browser-dot" style="background:#2AC340"></div>
           </div>
-          <div class="portfolio-live-ui browser-address" aria-hidden="true">
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>
-            <span>carlinedigital.com/projects/all-things-plumbing/</span>
-          </div>
         </div>
         <div class="project-preview-area">
-          <img id="img-atp" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="All Things Plumbing and Gas website screenshot" style="display:none">
-          <div class="portfolio-live-ui live-preview-shell" data-preview-url="/projects/all-things-plumbing/">
-            <iframe title="Interactive preview of All Things Plumbing & Gas" loading="lazy"></iframe>
-            <div class="portfolio-live-ui preview-loading" aria-hidden="true">Loading preview…</div>
-            <div class="portfolio-live-ui preview-gate">
-              <div class="portfolio-live-ui preview-kicker">Live website preview</div>
-              <div class="portfolio-live-ui preview-title">All Things Plumbing & Gas</div>
-              <div class="portfolio-live-ui preview-hint">Open the live preview to scroll, click and explore the website without leaving this page.</div>
-              <button type="button" class="portfolio-live-ui explore-preview-btn" aria-label="Explore live preview of All Things Plumbing & Gas">
-                Explore preview
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </button>
-            </div>
-          </div>
+          <iframe src="projects/all-things-plumbing/" title="All Things Plumbing & Gas live website preview" loading="lazy" tabindex="-1"></iframe>
+          <div class="project-preview-overlay" role="button" tabindex="0" aria-label="Activate All Things Plumbing & Gas live website preview"></div>
         </div>
       </div>
       <div class="project-info">
@@ -1051,13 +874,6 @@ footer {
         </div>
         <div class="project-name">All Things Plumbing &amp; Gas</div>
         <p class="project-desc">Dark, bold, and urban — built to project capability to residential and commercial clients.</p>
-        <div class="portfolio-live-ui project-actions">
-          <span class="portfolio-live-ui preview-status">Interactive preview</span>
-          <a class="portfolio-live-ui view-full-site" href="/projects/all-things-plumbing/" target="_blank" rel="noopener">
-            View full site
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-          </a>
-        </div>
       </div>
     </div>
 
@@ -1070,26 +886,10 @@ footer {
             <div class="browser-dot" style="background:#FDBC2C"></div>
             <div class="browser-dot" style="background:#2AC340"></div>
           </div>
-          <div class="portfolio-live-ui browser-address" aria-hidden="true">
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>
-            <span>carlinedigital.com/projects/cohen-electric/</span>
-          </div>
         </div>
         <div class="project-preview-area">
-          <img id="img-cohen" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Cohen Electric Services website screenshot" style="display:none">
-          <div class="portfolio-live-ui live-preview-shell" data-preview-url="/projects/cohen-electric/">
-            <iframe title="Interactive preview of Cohen Electric Services" loading="lazy"></iframe>
-            <div class="portfolio-live-ui preview-loading" aria-hidden="true">Loading preview…</div>
-            <div class="portfolio-live-ui preview-gate">
-              <div class="portfolio-live-ui preview-kicker">Live website preview</div>
-              <div class="portfolio-live-ui preview-title">Cohen Electric Services</div>
-              <div class="portfolio-live-ui preview-hint">Open the live preview to scroll, click and explore the website without leaving this page.</div>
-              <button type="button" class="portfolio-live-ui explore-preview-btn" aria-label="Explore live preview of Cohen Electric Services">
-                Explore preview
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </button>
-            </div>
-          </div>
+          <iframe src="projects/cohen-electric/" title="Cohen Electric Services live website preview" loading="lazy" tabindex="-1"></iframe>
+          <div class="project-preview-overlay" role="button" tabindex="0" aria-label="Activate Cohen Electric Services live website preview"></div>
         </div>
       </div>
       <div class="project-info">
@@ -1099,13 +899,6 @@ footer {
         </div>
         <div class="project-name">Cohen Electric Services</div>
         <p class="project-desc">Professional, trust-driven design that converts first-time visitors into enquiries.</p>
-        <div class="portfolio-live-ui project-actions">
-          <span class="portfolio-live-ui preview-status">Interactive preview</span>
-          <a class="portfolio-live-ui view-full-site" href="/projects/cohen-electric/" target="_blank" rel="noopener">
-            View full site
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-          </a>
-        </div>
       </div>
     </div>
 
@@ -1118,26 +911,10 @@ footer {
             <div class="browser-dot" style="background:#FDBC2C"></div>
             <div class="browser-dot" style="background:#2AC340"></div>
           </div>
-          <div class="portfolio-live-ui browser-address" aria-hidden="true">
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>
-            <span>carlinedigital.com/projects/fix-flow/</span>
-          </div>
         </div>
         <div class="project-preview-area">
-          <img id="img-fixflow" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Fix and Flow Plumbing website screenshot" style="display:none">
-          <div class="portfolio-live-ui live-preview-shell" data-preview-url="/projects/fix-flow/">
-            <iframe title="Interactive preview of Fix & Flow Plumbing" loading="lazy"></iframe>
-            <div class="portfolio-live-ui preview-loading" aria-hidden="true">Loading preview…</div>
-            <div class="portfolio-live-ui preview-gate">
-              <div class="portfolio-live-ui preview-kicker">Live website preview</div>
-              <div class="portfolio-live-ui preview-title">Fix & Flow Plumbing</div>
-              <div class="portfolio-live-ui preview-hint">Open the live preview to scroll, click and explore the website without leaving this page.</div>
-              <button type="button" class="portfolio-live-ui explore-preview-btn" aria-label="Explore live preview of Fix & Flow Plumbing">
-                Explore preview
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </button>
-            </div>
-          </div>
+          <iframe src="projects/fix-flow/" title="Fix & Flow Plumbing live website preview" loading="lazy" tabindex="-1"></iframe>
+          <div class="project-preview-overlay" role="button" tabindex="0" aria-label="Activate Fix & Flow Plumbing live website preview"></div>
         </div>
       </div>
       <div class="project-info">
@@ -1147,13 +924,6 @@ footer {
         </div>
         <div class="project-name">Fix &amp; Flow Plumbing</div>
         <p class="project-desc">High-impact, animated, and built to convert — especially for emergency call-outs.</p>
-        <div class="portfolio-live-ui project-actions">
-          <span class="portfolio-live-ui preview-status">Interactive preview</span>
-          <a class="portfolio-live-ui view-full-site" href="/projects/fix-flow/" target="_blank" rel="noopener">
-            View full site
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-          </a>
-        </div>
       </div>
     </div>
 
@@ -1167,26 +937,10 @@ footer {
             <div class="browser-dot" style="background:#FDBC2C"></div>
             <div class="browser-dot" style="background:#2AC340"></div>
           </div>
-          <div class="portfolio-live-ui browser-address" aria-hidden="true">
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>
-            <span>carlinedigital.com/projects/la-once-mil/</span>
-          </div>
         </div>
         <div class="project-preview-area">
-          <img id="img-laoncemil" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="La Once Mil restaurant website screenshot" style="display:none">
-          <div class="portfolio-live-ui live-preview-shell" data-preview-url="/projects/la-once-mil/">
-            <iframe title="Interactive preview of La Once Mil" loading="lazy"></iframe>
-            <div class="portfolio-live-ui preview-loading" aria-hidden="true">Loading preview…</div>
-            <div class="portfolio-live-ui preview-gate">
-              <div class="portfolio-live-ui preview-kicker">Live website preview</div>
-              <div class="portfolio-live-ui preview-title">La Once Mil</div>
-              <div class="portfolio-live-ui preview-hint">Open the live preview to scroll, click and explore the website without leaving this page.</div>
-              <button type="button" class="portfolio-live-ui explore-preview-btn" aria-label="Explore live preview of La Once Mil">
-                Explore preview
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </button>
-            </div>
-          </div>
+          <iframe src="projects/las-de-santa-fe/" title="La Once Mil live website preview" loading="lazy" tabindex="-1"></iframe>
+          <div class="project-preview-overlay" role="button" tabindex="0" aria-label="Activate La Once Mil live website preview"></div>
         </div>
       </div>
       <div class="project-info">
@@ -1196,13 +950,6 @@ footer {
         </div>
         <div class="project-name">La Once Mil</div>
         <p class="project-desc">Full-bleed editorial design for a Michelin-recognised taco restaurant in CDMX.</p>
-        <div class="portfolio-live-ui project-actions">
-          <span class="portfolio-live-ui preview-status">Interactive preview</span>
-          <a class="portfolio-live-ui view-full-site" href="/projects/la-once-mil/" target="_blank" rel="noopener">
-            View full site
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-          </a>
-        </div>
       </div>
     </div>
 
@@ -1524,28 +1271,50 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-/* INTERACTIVE PROJECT PREVIEWS */
-document.querySelectorAll('.live-preview-shell').forEach(shell => {
-  const btn = shell.querySelector('.explore-preview-btn');
-  const iframe = shell.querySelector('iframe');
-  if (!btn || !iframe) return;
+/* LIVE PROJECT PREVIEWS */
+(function() {
+  const IFRAME_WIDTH = 1440;
 
-  btn.addEventListener('click', () => {
-    if (shell.classList.contains('is-active') || shell.classList.contains('is-loading')) return;
-    shell.classList.add('is-loading');
-    btn.disabled = true;
-    const url = shell.dataset.previewUrl;
+  function sizePreview(area) {
+    const iframe = area.querySelector('iframe');
+    if (!iframe) return;
+    const scale = area.clientWidth / IFRAME_WIDTH;
+    if (!scale) return;
+    iframe.style.transform = `scale(${scale})`;
+    iframe.style.height = `${Math.ceil(area.clientHeight / scale)}px`;
+  }
+
+  const previewAreas = Array.from(document.querySelectorAll('.project-preview-area'));
+  previewAreas.forEach(area => {
+    sizePreview(area);
+    const overlay = area.querySelector('.project-preview-overlay');
+    if (!overlay) return;
 
     const activate = () => {
-      shell.classList.remove('is-loading');
-      shell.classList.add('is-active');
-      iframe.removeEventListener('load', activate);
+      area.classList.add('is-active');
+      const iframe = area.querySelector('iframe');
+      if (iframe) iframe.removeAttribute('tabindex');
+      overlay.remove();
     };
 
-    iframe.addEventListener('load', activate);
-    iframe.src = url;
+    overlay.addEventListener('click', activate);
+    overlay.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        activate();
+      }
+    });
   });
-});
+
+  if ('ResizeObserver' in window) {
+    const resizeObserver = new ResizeObserver(entries => {
+      entries.forEach(entry => sizePreview(entry.target));
+    });
+    previewAreas.forEach(area => resizeObserver.observe(area));
+  } else {
+    window.addEventListener('resize', () => previewAreas.forEach(sizePreview));
+  }
+})();
 
 /* FORM */
 function handleFormSubmit(e) {
@@ -1584,7 +1353,6 @@ function handleFormSubmit(e) {
       if (!p) continue;
       if (p.closest('#language-switcher')) continue;
       if (p.closest('#bilingual-language-script')) continue;
-      if (p.closest('.portfolio-live-ui')) continue;
       if (p.tagName === 'SCRIPT' || p.tagName === 'STYLE') continue;
       if (node.nodeValue.trim()) nodes.push(node);
     }
@@ -1594,7 +1362,7 @@ function handleFormSubmit(e) {
   function getElements() {
     return Array.from(document.querySelectorAll('*')).filter(el =>
       !el.closest('#language-switcher') &&
-      !el.closest('.portfolio-live-ui') &&
+      !el.closest('.project-preview-overlay') &&
       el.id !== 'bilingual-language-script' &&
       el.id !== 'bilingual-language-styles'
     );
@@ -1613,24 +1381,6 @@ function handleFormSubmit(e) {
     const elements = getElements();
     ATTR_MAP.forEach(item => {
       if (elements[item.i]) elements[item.i].setAttribute(item.a, item[target]);
-    });
-
-    document.querySelectorAll('.live-preview-shell').forEach(shell => {
-      const kicker = shell.querySelector('.preview-kicker');
-      const hint = shell.querySelector('.preview-hint');
-      const btn = shell.querySelector('.explore-preview-btn');
-      const loading = shell.querySelector('.preview-loading');
-      const actions = shell.closest('.project-card')?.querySelector('.project-actions');
-      if (kicker) kicker.childNodes[0].nodeValue = target === 'es' ? 'Vista previa del sitio' : 'Live website preview';
-      if (hint) hint.childNodes[0].nodeValue = target === 'es' ? 'Abre la vista previa para desplazarte, hacer clic y explorar el sitio sin salir de esta página.' : 'Open the live preview to scroll, click and explore the website without leaving this page.';
-      if (btn && !shell.classList.contains('is-loading')) btn.childNodes[0].nodeValue = target === 'es' ? '\n                Explorar vista previa\n                ' : '\n                Explore preview\n                ';
-      if (loading) loading.childNodes[0].nodeValue = target === 'es' ? 'Cargando vista previa…' : 'Loading preview…';
-      if (actions) {
-        const status = actions.querySelector('.preview-status');
-        const full = actions.querySelector('.view-full-site');
-        if (status) status.childNodes[0].nodeValue = target === 'es' ? 'Vista previa interactiva' : 'Interactive preview';
-        if (full) full.childNodes[0].nodeValue = target === 'es' ? '\n            Ver sitio completo\n            ' : '\n            View full site\n            ';
-      }
     });
 
     document.querySelectorAll('.language-btn').forEach(btn => {
