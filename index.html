@@ -4,10 +4,10 @@
   ─────────────────────────────────────────────────────
   Client project demos (unlisted) live at:
     projects/cohen-electric/
-    projects/auckland-plumber/
+    projects/auckland-plumber-drainlayer/
     projects/all-things-plumbing/
     projects/fix-flow/
-    projects/las-de-santa-fe/
+    projects/la-once-mil/
   ─────────────────────────────────────────────────────
 -->
 <html lang="en">
@@ -136,7 +136,7 @@ button { font-family: var(--sans); cursor: pointer; }
 }
 @keyframes line-in { to { transform: scaleX(1); } }
 
-.hero-content { position: relative; z-index: 2; max-width: 1200px; padding: 0 60px; width: 100%; }
+.hero-content { position: relative; z-index: 2; max-width: 1260px; padding: 0 60px; width: 100%; }
 
 .hero-tag {
   display: inline-flex; align-items: center; gap: 10px; margin-bottom: 32px;
@@ -153,6 +153,7 @@ button { font-family: var(--sans); cursor: pointer; }
   animation: fade-up 1s var(--ease-out) 0.75s forwards;
 }
 .hero-h1 em { font-style: italic; color: var(--gold); }
+.hero-h1 br { display: none; }
 
 .hero-sub {
   margin-top: 28px; font-size: clamp(15px, 1.5vw, 18px);
@@ -243,13 +244,15 @@ button { font-family: var(--sans); cursor: pointer; }
 .projects-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2px;
+  gap: 18px;
 }
-/* 5th card spans full width */
-.project-card:last-child {
-  grid-column: 1 / -1;
-}
-.project-card:last-child .project-preview-area {
+/* Visual order: La Once Mil moves to slot 2; All Things Plumbing becomes the featured full-width card. */
+.project-card:nth-child(1) { order: 1; }
+.project-card:nth-child(5) { order: 2; }
+.project-card:nth-child(3) { order: 3; }
+.project-card:nth-child(4) { order: 4; }
+.project-card:nth-child(2) { order: 5; grid-column: 1 / -1; }
+.project-card:nth-child(2) .project-preview-area {
   height: min(50.35vw, 520px);
   aspect-ratio: auto;
 }
@@ -312,7 +315,7 @@ button { font-family: var(--sans); cursor: pointer; }
   cursor: pointer;
 }
 .project-preview-overlay::after {
-  content: 'Click to interact';
+  content: attr(data-label);
   position: absolute;
   left: 50%;
   bottom: 14px;
@@ -332,6 +335,33 @@ button { font-family: var(--sans); cursor: pointer; }
   transition: opacity 0.2s var(--ease);
 }
 .project-preview-overlay:hover::after { opacity: 1; }
+
+.project-open-link {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  padding: 7px 10px;
+  border: 1px solid rgba(244,240,232,0.16);
+  border-radius: 3px;
+  background: rgba(14,13,10,0.78);
+  backdrop-filter: blur(10px);
+  color: var(--white2);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: opacity 0.2s var(--ease), background 0.2s var(--ease);
+}
+.project-open-link::before { content: attr(data-label); }
+.project-open-link::after { content: ' ↗'; margin-left: 5px; font-size: 11px; }
+.project-open-link:hover { background: rgba(14,13,10,0.94); }
 
 /* Info strip — compact, secondary */
 .project-info {
@@ -654,7 +684,9 @@ footer {
    RESPONSIVE
 ──────────────────────────────────────────── */
 @media (max-width: 1024px) {
-  .projects-list { grid-template-columns: 1fr; }
+  .projects-list { grid-template-columns: 1fr; gap: 14px; }
+  .project-card:nth-child(2) { grid-column: auto; }
+  .project-card:nth-child(2) .project-preview-area { height: auto; aspect-ratio: 1440 / 725; }
 }
 
 @media (max-width: 960px) {
@@ -771,7 +803,7 @@ footer {
     </div>
 
     <h1 class="hero-h1">
-      Websites that make<br>your business <em>look its best.</em>
+      Websites that make <br>your business <em>look its best.</em>
     </h1>
 
     <p class="hero-sub">
@@ -838,8 +870,9 @@ footer {
           </div>
         </div>
         <div class="project-preview-area">
-          <iframe src="projects/auckland-plumber/" title="Auckland Plumber Drainlayer live website preview" loading="lazy" tabindex="-1"></iframe>
-          <div class="project-preview-overlay" role="button" tabindex="0" aria-label="Activate Auckland Plumber Drainlayer live website preview"></div>
+          <iframe src="projects/auckland-plumber-drainlayer/" title="Auckland Plumber Drainlayer live website preview" loading="lazy" tabindex="-1"></iframe>
+          <div class="project-preview-overlay" role="button" tabindex="0" data-project="Auckland Plumber Drainlayer" data-label="Click to interact" aria-label="Activate Auckland Plumber Drainlayer live website preview"></div>
+          <a class="project-open-link" href="projects/auckland-plumber-drainlayer/" target="_blank" rel="noopener noreferrer" data-project="Auckland Plumber Drainlayer" data-label="Open site" aria-label="Open Auckland Plumber Drainlayer in a new tab"></a>
         </div>
       </div>
       <div class="project-info">
@@ -864,7 +897,8 @@ footer {
         </div>
         <div class="project-preview-area">
           <iframe src="projects/all-things-plumbing/" title="All Things Plumbing & Gas live website preview" loading="lazy" tabindex="-1"></iframe>
-          <div class="project-preview-overlay" role="button" tabindex="0" aria-label="Activate All Things Plumbing & Gas live website preview"></div>
+          <div class="project-preview-overlay" role="button" tabindex="0" data-project="All Things Plumbing & Gas" data-label="Click to interact" aria-label="Activate All Things Plumbing & Gas live website preview"></div>
+          <a class="project-open-link" href="projects/all-things-plumbing/" target="_blank" rel="noopener noreferrer" data-project="All Things Plumbing & Gas" data-label="Open site" aria-label="Open All Things Plumbing & Gas in a new tab"></a>
         </div>
       </div>
       <div class="project-info">
@@ -889,7 +923,8 @@ footer {
         </div>
         <div class="project-preview-area">
           <iframe src="projects/cohen-electric/" title="Cohen Electric Services live website preview" loading="lazy" tabindex="-1"></iframe>
-          <div class="project-preview-overlay" role="button" tabindex="0" aria-label="Activate Cohen Electric Services live website preview"></div>
+          <div class="project-preview-overlay" role="button" tabindex="0" data-project="Cohen Electric Services" data-label="Click to interact" aria-label="Activate Cohen Electric Services live website preview"></div>
+          <a class="project-open-link" href="projects/cohen-electric/" target="_blank" rel="noopener noreferrer" data-project="Cohen Electric Services" data-label="Open site" aria-label="Open Cohen Electric Services in a new tab"></a>
         </div>
       </div>
       <div class="project-info">
@@ -914,7 +949,8 @@ footer {
         </div>
         <div class="project-preview-area">
           <iframe src="projects/fix-flow/" title="Fix & Flow Plumbing live website preview" loading="lazy" tabindex="-1"></iframe>
-          <div class="project-preview-overlay" role="button" tabindex="0" aria-label="Activate Fix & Flow Plumbing live website preview"></div>
+          <div class="project-preview-overlay" role="button" tabindex="0" data-project="Fix & Flow Plumbing" data-label="Click to interact" aria-label="Activate Fix & Flow Plumbing live website preview"></div>
+          <a class="project-open-link" href="projects/fix-flow/" target="_blank" rel="noopener noreferrer" data-project="Fix & Flow Plumbing" data-label="Open site" aria-label="Open Fix & Flow Plumbing in a new tab"></a>
         </div>
       </div>
       <div class="project-info">
@@ -939,8 +975,9 @@ footer {
           </div>
         </div>
         <div class="project-preview-area">
-          <iframe src="projects/las-de-santa-fe/" title="La Once Mil live website preview" loading="lazy" tabindex="-1"></iframe>
-          <div class="project-preview-overlay" role="button" tabindex="0" aria-label="Activate La Once Mil live website preview"></div>
+          <iframe src="projects/la-once-mil/" title="La Once Mil live website preview" loading="lazy" tabindex="-1"></iframe>
+          <div class="project-preview-overlay" role="button" tabindex="0" data-project="La Once Mil" data-label="Click to interact" aria-label="Activate La Once Mil live website preview"></div>
+          <a class="project-open-link" href="projects/la-once-mil/" target="_blank" rel="noopener noreferrer" data-project="La Once Mil" data-label="Open site" aria-label="Open La Once Mil in a new tab"></a>
         </div>
       </div>
       <div class="project-info">
@@ -1021,7 +1058,7 @@ footer {
       <div class="process-step reveal reveal-delay-1">
         <div class="process-step-num">02</div>
         <div class="process-step-name">Design</div>
-        <div class="process-step-desc">A visual identity and layout built specifically for you. See your website before you commit — we show you the direction first and refine until it's right.</div>
+        <div class="process-step-desc">A visual identity and layout built specifically for you. See your website before you commit — we show you the direction first and refine it until it's right.</div>
       </div>
       <div class="process-step reveal reveal-delay-2">
         <div class="process-step-num">03</div>
@@ -1081,7 +1118,7 @@ footer {
           </div>
           <div>
             <div class="about-cred-label">No templates. No shortcuts.</div>
-            <div class="about-cred-desc">Every website is designed specifically for the business — its identity, its customers, its goals. The portfolio above shows what that actually looks like in practice.</div>
+            <div class="about-cred-desc">Every website is designed specifically for the business — its identity, its customers, its goals. The portfolio above shows what that looks like in practice.</div>
           </div>
         </div>
         <div class="about-cred">
@@ -1131,22 +1168,13 @@ footer {
       </p>
 
       <div class="contact-channels reveal reveal-delay-2">
-        <a href="mailto:hello@carlinedigital.com" class="contact-channel">
+        <a href="mailto:edward@carlinedigital.com" class="contact-channel">
           <div class="contact-channel-icon">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           </div>
           <div>
             <div class="contact-channel-label">Email</div>
-            <div class="contact-channel-val">hello@carlinedigital.com</div>
-          </div>
-        </a>
-        <a href="https://instagram.com/carlinedigital" target="_blank" rel="noopener" class="contact-channel">
-          <div class="contact-channel-icon">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-          </div>
-          <div>
-            <div class="contact-channel-label">Instagram</div>
-            <div class="contact-channel-val">@carlinedigital</div>
+            <div class="contact-channel-val">edward@carlinedigital.com</div>
           </div>
         </a>
       </div>
@@ -1189,7 +1217,7 @@ footer {
     <a href="#services">Services</a>
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
-    <a href="mailto:hello@carlinedigital.com">hello@carlinedigital.com</a>
+    <a href="mailto:edward@carlinedigital.com">edward@carlinedigital.com</a>
   </div>
 </footer>
 
@@ -1329,7 +1357,7 @@ function handleFormSubmit(e) {
   const business = document.getElementById('f-business').value;
   const msg = document.getElementById('f-message').value;
   const body = window.__lang === 'es' ? `Nombre: ${name}\nCorreo electrónico: ${email}\nEmpresa: ${business}\n\n${msg}` : `Name: ${name}\nEmail: ${email}\nBusiness: ${business}\n\n${msg}`;
-  const mailto = `mailto:hello@carlinedigital.com?subject=${encodeURIComponent(window.__lang === 'es' ? 'Consulta de proyecto de ' + name : 'Project enquiry from ' + name)}&body=${encodeURIComponent(body)}`;
+  const mailto = `mailto:edward@carlinedigital.com?subject=${encodeURIComponent(window.__lang === 'es' ? 'Consulta de proyecto de ' + name : 'Project enquiry from ' + name)}&body=${encodeURIComponent(body)}`;
   setTimeout(() => {
     window.location.href = mailto;
     form.style.display = 'none';
@@ -1341,7 +1369,7 @@ function handleFormSubmit(e) {
 
 <script id="bilingual-language-script">
 (function() {
-  const TEXT_MAP = [{"i": 0, "en": "Carline Digital — Website Design Studio", "es": "Carline Digital — Estudio de Diseño Web"}, {"i": 2, "en": "Website Design Studio", "es": "Estudio de Diseño Web"}, {"i": 3, "en": "Work", "es": "Proyectos"}, {"i": 4, "en": "Services", "es": "Servicios"}, {"i": 5, "en": "Process", "es": "Proceso"}, {"i": 6, "en": "About", "es": "Nosotros"}, {"i": 7, "en": "Contact", "es": "Contacto"}, {"i": 8, "en": "Start a project", "es": "Iniciar un proyecto"}, {"i": 9, "en": "Work", "es": "Proyectos"}, {"i": 10, "en": "Services", "es": "Servicios"}, {"i": 11, "en": "Process", "es": "Proceso"}, {"i": 12, "en": "About", "es": "Nosotros"}, {"i": 13, "en": "Contact", "es": "Contacto"}, {"i": 14, "en": "Start a project", "es": "Iniciar un proyecto"}, {"i": 16, "en": "Independent Website Design Studio", "es": "Estudio Independiente de Diseño Web"}, {"i": 17, "en": "\n      Websites that make", "es": "\n      Sitios web que hacen que"}, {"i": 18, "en": "your business ", "es": "tu negocio "}, {"i": 19, "en": "look its best.", "es": "luzca al máximo."}, {"i": 20, "en": "\n      We design and build exceptional websites for established businesses. Every project is built from scratch — around your business, your customers, and the impression you want to make.\n    ", "es": "\n      Diseñamos y desarrollamos sitios web excepcionales para empresas consolidadas. Cada proyecto se crea desde cero — en torno a tu negocio, tus clientes y la impresión que quieres causar.\n    "}, {"i": 21, "en": "\n        See the work\n        ", "es": "\n        Ver proyectos\n        "}, {"i": 22, "en": "\n        Start a project\n        ", "es": "\n        Iniciar un proyecto\n        "}, {"i": 23, "en": "\n    Scroll to explore\n    ", "es": "\n    Desliza para explorar\n    "}, {"i": 24, "en": "first impression", "es": "primera impresión"}, {"i": 25, "en": "The reality", "es": "La realidad"}, {"i": 26, "en": "\n      Your website is often the ", "es": "\n      Tu sitio web suele ser "}, {"i": 27, "en": "first thing", "es": "lo primero"}, {"i": 28, "en": " a customer sees.", "es": " que ve un cliente."}, {"i": 29, "en": "It shouldn't be the reason they leave.\n    ", "es": "No debería ser la razón por la que se marcha.\n    "}, {"i": 30, "en": "\n      A good website earns trust before you've said a word. Every project we take on is designed to do exactly that — built around your specific business, not borrowed from a template.\n    ", "es": "\n      Un buen sitio web genera confianza antes de que hayas dicho una palabra. Cada proyecto que hacemos está diseñado precisamente para eso — creado en torno a tu negocio, no a partir de una plantilla.\n    "}, {"i": 31, "en": "Let's build yours", "es": "Construyamos el tuyo"}, {"i": 32, "en": "Selected work", "es": "Proyectos seleccionados"}, {"i": 33, "en": "The work", "es": "Los proyectos"}, {"i": 34, "en": "speaks.", "es": "hablan."}, {"i": 35, "en": "\n      Five projects. Five completely different aesthetics — warm editorial, dark urban, bold American, high-impact modern, expressive restaurant. A good website should feel like it belongs to that specific business.\n    ", "es": "\n      Cinco proyectos. Cinco estéticas completamente distintas — editorial cálida, urbana oscura, estadounidense audaz, moderna de alto impacto y restaurante expresivo. Un buen sitio web debe sentirse como algo propio de ese negocio concreto.\n    "}, {"i": 37, "en": "Plumbing & Building · Auckland, NZ", "es": "Fontanería y construcción · Auckland, NZ"}, {"i": 39, "en": "Warm, editorial identity that stands apart from every other trades website in the market.", "es": "Una identidad cálida y editorial que destaca frente a cualquier otra web de servicios profesionales del mercado."}, {"i": 41, "en": "Plumbing & Gas · Auckland, NZ", "es": "Fontanería y gas · Auckland, NZ"}, {"i": 43, "en": "Dark, bold, and urban — built to project capability to residential and commercial clients.", "es": "Oscura, audaz y urbana — creada para transmitir capacidad y solvencia a clientes residenciales y comerciales."}, {"i": 45, "en": "Electrical Services · Dallas, TX", "es": "Servicios eléctricos · Dallas, TX"}, {"i": 47, "en": "Professional, trust-driven design that converts first-time visitors into enquiries.", "es": "Un diseño profesional centrado en la confianza que convierte a los nuevos visitantes en consultas."}, {"i": 49, "en": "Plumbing & Drainage · Auckland, NZ", "es": "Fontanería y desagües · Auckland, NZ"}, {"i": 51, "en": "High-impact, animated, and built to convert — especially for emergency call-outs.", "es": "De alto impacto, animada y creada para convertir — especialmente en servicios de emergencia."}, {"i": 53, "en": "Restaurant · Mexico City", "es": "Restaurante · Ciudad de México"}, {"i": 55, "en": "Full-bleed editorial design for a Michelin-recognised taco restaurant in CDMX.", "es": "Diseño editorial a sangre completa para una taquería reconocida por Michelin en CDMX."}, {"i": 56, "en": "What we do", "es": "Qué hacemos"}, {"i": 57, "en": "Built around", "es": "Creado en torno a"}, {"i": 58, "en": "your business.", "es": "tu negocio."}, {"i": 59, "en": "\n        No generic templates. No cookie-cutter layouts. Every website is designed specifically for the business — built around its identity, customers, and goals.\n      ", "es": "\n        Sin plantillas genéricas. Sin diseños repetidos. Cada sitio web se diseña específicamente para el negocio — en torno a su identidad, sus clientes y sus objetivos.\n      "}, {"i": 60, "en": "\n        Mobile-friendly, fast-loading, and ready to work as hard as you do — that's not a separate service, it's the standard.\n      ", "es": "\n        Adaptado a móviles, de carga rápida y preparado para trabajar tan duro como tú — no es un servicio aparte, es el estándar.\n      "}, {"i": 61, "en": "Discuss your project", "es": "Hablemos de tu proyecto"}, {"i": 63, "en": "Website Design & Build", "es": "Diseño y Desarrollo Web"}, {"i": 64, "en": "A completely custom website designed around your business, your customers, and the impression you want to make. No templates. No shortcuts. Built from scratch.", "es": "Un sitio web totalmente a medida, diseñado en torno a tu negocio, tus clientes y la impresión que quieres causar. Sin plantillas. Sin atajos. Creado desde cero."}, {"i": 66, "en": "Website Redesign", "es": "Rediseño Web"}, {"i": 67, "en": "Your current website isn't doing you justice. We rebuild it properly — better first impression, clearer message, and a design that actually reflects your business.", "es": "Tu sitio web actual no te hace justicia. Lo reconstruimos como debe ser — mejor primera impresión, mensaje más claro y un diseño que refleje de verdad tu negocio."}, {"i": 69, "en": "Interactive Experiences", "es": "Experiencias Interactivas"}, {"i": 70, "en": "For businesses that want to genuinely stand out. Custom animations, interactions, and digital experiences that put your brand in a different category entirely.", "es": "Para empresas que quieren destacar de verdad. Animaciones, interacciones y experiencias digitales a medida que sitúan tu marca en una categoría completamente distinta."}, {"i": 71, "en": "How it works", "es": "Cómo funciona"}, {"i": 72, "en": "Simple process.", "es": "Proceso sencillo."}, {"i": 73, "en": "Exceptional result.", "es": "Resultado excepcional."}, {"i": 74, "en": "\n        Working with Carline Digital is straightforward. No jargon, no unnecessary complexity — just a clear path from brief to a website you're proud of.\n      ", "es": "\n        Trabajar con Carline Digital es sencillo. Sin jerga, sin complejidad innecesaria — solo un camino claro desde el encargo inicial hasta un sitio web del que te sientas orgulloso.\n      "}, {"i": 76, "en": "Discover", "es": "Descubrir"}, {"i": 77, "en": "We start by understanding your business, your customers, and what you need the website to achieve. No assumptions, no templates pulled out of a drawer.", "es": "Empezamos por entender tu negocio, tus clientes y lo que necesitas que consiga el sitio web. Sin suposiciones, sin plantillas sacadas de un cajón."}, {"i": 79, "en": "Design", "es": "Diseño"}, {"i": 80, "en": "A visual identity and layout built specifically for you. See your website before you commit — we show you the direction first and refine until it's right.", "es": "Una identidad visual y una estructura creadas específicamente para ti. Ve tu sitio web antes de comprometerte — primero te mostramos la dirección y la refinamos hasta que quede perfecta."}, {"i": 82, "en": "Build", "es": "Desarrollo"}, {"i": 83, "en": "The approved design is built into a fast, clean, fully responsive website. Every detail is finished properly — no corners cut, no placeholder content left behind.", "es": "El diseño aprobado se convierte en un sitio web rápido, limpio y totalmente adaptable a cualquier pantalla. Cada detalle queda bien terminado — sin recortar calidad ni dejar contenido provisional."}, {"i": 85, "en": "Launch", "es": "Lanzamiento"}, {"i": 86, "en": "We handle the technical side of going live. And after launch, you're not left on your own — we're available for updates and ongoing support whenever you need it.", "es": "Nos encargamos de la parte técnica de la publicación. Y después del lanzamiento no te dejamos solo — estamos disponibles para actualizaciones y soporte continuo cuando lo necesites."}, {"i": 87, "en": "Photograph coming soon", "es": "Fotografía próximamente"}, {"i": 89, "en": "Founder & Designer", "es": "Fundador y Diseñador"}, {"i": 90, "en": "About", "es": "Nosotros"}, {"i": 91, "en": "One studio.", "es": "Un estudio."}, {"i": 92, "en": "Full focus.", "es": "Toda la atención."}, {"i": 93, "en": "\n        Carline Digital is an independent web design studio focused on creating thoughtful, high-quality websites for businesses. Every project is designed and built directly by Edward — from the initial concept through to launch.\n      ", "es": "\n        Carline Digital es un estudio independiente de diseño web centrado en crear sitios web cuidados y de alta calidad para empresas. Cada proyecto es diseñado y desarrollado directamente por Edward — desde el concepto inicial hasta el lanzamiento.\n      "}, {"i": 94, "en": "\n        That means when you work with Carline Digital, you're working with the person who is actually designing and building your site. No handoffs, no intermediaries, no junior staff. Just direct communication and full attention on your project.\n      ", "es": "\n        Eso significa que cuando trabajas con Carline Digital, trabajas con la persona que realmente diseña y desarrolla tu sitio. Sin traspasos, sin intermediarios, sin personal junior. Solo comunicación directa y atención total a tu proyecto.\n      "}, {"i": 95, "en": "No templates. No shortcuts.", "es": "Sin plantillas. Sin atajos."}, {"i": 96, "en": "Every website is designed specifically for the business — its identity, its customers, its goals. The portfolio above shows what that actually looks like in practice.", "es": "Cada sitio web se diseña específicamente para el negocio — su identidad, sus clientes y sus objetivos. El portafolio anterior muestra cómo se traduce eso en la práctica."}, {"i": 97, "en": "Direct. From start to finish.", "es": "Directo. De principio a fin."}, {"i": 98, "en": "You deal with Edward throughout the entire project — discovery, design, build, and launch. No handoffs, no account managers, no surprises.", "es": "Tratas con Edward durante todo el proyecto — descubrimiento, diseño, desarrollo y lanzamiento. Sin traspasos, sin gestores de cuenta, sin sorpresas."}, {"i": 99, "en": "\n        Available for new projects\n      ", "es": "\n        Disponible para nuevos proyectos\n      "}, {"i": 100, "en": "Ready to stand out?", "es": "¿Listo para destacar?"}, {"i": 101, "en": "Let's build a website that works as hard as you do.", "es": "Construyamos un sitio web que trabaje tan duro como tú."}, {"i": 102, "en": "\n    Start a project\n    ", "es": "\n    Iniciar un proyecto\n    "}, {"i": 103, "en": "Let's talk.", "es": "Hablemos."}, {"i": 104, "en": "Get in touch", "es": "Contacta"}, {"i": 105, "en": "Ready to build something ", "es": "¿Listo para crear algo "}, {"i": 106, "en": "worth seeing?", "es": "que merezca la pena ver?"}, {"i": 107, "en": "\n        Tell us a little about your business and what you're looking for. We'll get back to you quickly and have an honest conversation about what's possible.\n      ", "es": "\n        Cuéntanos un poco sobre tu negocio y lo que estás buscando. Te responderemos pronto y tendremos una conversación clara sobre lo que es posible.\n      "}, {"i": 108, "en": "\n        No commitment. No hard sell.\n      ", "es": "\n        Sin compromiso. Sin presión comercial.\n      "}, {"i": 109, "en": "Email", "es": "Correo electrónico"}, {"i": 113, "en": "Tell us about your project.", "es": "Cuéntanos sobre tu proyecto."}, {"i": 114, "en": "Name *", "es": "Nombre *"}, {"i": 115, "en": "Email *", "es": "Correo electrónico *"}, {"i": 116, "en": "Business", "es": "Empresa"}, {"i": 117, "en": "Message", "es": "Mensaje"}, {"i": 118, "en": "Send message", "es": "Enviar mensaje"}, {"i": 120, "en": "© 2026 Carline Digital. All rights reserved.", "es": "© 2026 Carline Digital. Todos los derechos reservados."}, {"i": 121, "en": "Work", "es": "Proyectos"}, {"i": 122, "en": "Services", "es": "Servicios"}, {"i": 123, "en": "About", "es": "Nosotros"}, {"i": 124, "en": "Contact", "es": "Contacto"}];
+  const TEXT_MAP = [{"i": 0, "en": "Carline Digital — Website Design Studio", "es": "Carline Digital — Estudio de Diseño Web"}, {"i": 2, "en": "Website Design Studio", "es": "Estudio de Diseño Web"}, {"i": 3, "en": "Work", "es": "Proyectos"}, {"i": 4, "en": "Services", "es": "Servicios"}, {"i": 5, "en": "Process", "es": "Proceso"}, {"i": 6, "en": "About", "es": "Nosotros"}, {"i": 7, "en": "Contact", "es": "Contacto"}, {"i": 8, "en": "Start a project", "es": "Iniciar un proyecto"}, {"i": 9, "en": "Work", "es": "Proyectos"}, {"i": 10, "en": "Services", "es": "Servicios"}, {"i": 11, "en": "Process", "es": "Proceso"}, {"i": 12, "en": "About", "es": "Nosotros"}, {"i": 13, "en": "Contact", "es": "Contacto"}, {"i": 14, "en": "Start a project", "es": "Iniciar un proyecto"}, {"i": 16, "en": "Independent Website Design Studio", "es": "Estudio Independiente de Diseño Web"}, {"i": 17, "en": "\n      Websites that make ", "es": "\n      Sitios web para que "}, {"i": 18, "en": "your business ", "es": "tu negocio "}, {"i": 19, "en": "look its best.", "es": "luzca al máximo."}, {"i": 20, "en": "\n      We design and build exceptional websites for established businesses. Every project is built from scratch — around your business, your customers, and the impression you want to make.\n    ", "es": "\n      Diseñamos y desarrollamos sitios web excepcionales para empresas consolidadas. Cada proyecto se crea desde cero — en torno a tu negocio, tus clientes y la impresión que quieres causar.\n    "}, {"i": 21, "en": "\n        See the work\n        ", "es": "\n        Ver proyectos\n        "}, {"i": 22, "en": "\n        Start a project\n        ", "es": "\n        Iniciar un proyecto\n        "}, {"i": 23, "en": "\n    Scroll to explore\n    ", "es": "\n    Desliza para explorar\n    "}, {"i": 24, "en": "first impression", "es": "primera impresión"}, {"i": 25, "en": "The reality", "es": "La realidad"}, {"i": 26, "en": "\n      Your website is often the ", "es": "\n      Tu sitio web suele ser "}, {"i": 27, "en": "first thing", "es": "lo primero"}, {"i": 28, "en": " a customer sees.", "es": " que ve un cliente."}, {"i": 29, "en": "It shouldn't be the reason they leave.\n    ", "es": "No debería ser la razón por la que se va.\n    "}, {"i": 30, "en": "\n      A good website earns trust before you've said a word. Every project we take on is designed to do exactly that — built around your specific business, not borrowed from a template.\n    ", "es": "\n      Un buen sitio web genera confianza antes de que hayas dicho una palabra. Cada proyecto que hacemos está diseñado precisamente para eso — creado en torno a tu negocio, no a partir de una plantilla.\n    "}, {"i": 31, "en": "Let's build yours", "es": "Construyamos el tuyo"}, {"i": 32, "en": "Selected work", "es": "Proyectos seleccionados"}, {"i": 33, "en": "The work", "es": "Los proyectos"}, {"i": 34, "en": "speaks.", "es": "hablan."}, {"i": 35, "en": "\n      Five projects. Five completely different aesthetics — warm editorial, dark urban, bold American, high-impact modern, expressive restaurant. A good website should feel like it belongs to that specific business.\n    ", "es": "\n      Cinco proyectos. Cinco estéticas muy distintas — editorial cálida, urbana oscura, estadounidense audaz, moderna de impacto y gastronómica expresiva. Un buen sitio web debe sentirse hecho para ese negocio.\n    "}, {"i": 37, "en": "Plumbing & Building · Auckland, NZ", "es": "Fontanería y construcción · Auckland, NZ"}, {"i": 39, "en": "Warm, editorial identity that stands apart from every other trades website in the market.", "es": "Una identidad cálida y editorial que destaca frente a cualquier otra web de servicios profesionales del mercado."}, {"i": 41, "en": "Plumbing & Gas · Auckland, NZ", "es": "Fontanería y gas · Auckland, NZ"}, {"i": 43, "en": "Dark, bold, and urban — built to project capability to residential and commercial clients.", "es": "Oscura, audaz y urbana — creada para transmitir capacidad y solvencia a clientes residenciales y comerciales."}, {"i": 45, "en": "Electrical Services · Dallas, TX", "es": "Servicios eléctricos · Dallas, TX"}, {"i": 47, "en": "Professional, trust-driven design that converts first-time visitors into enquiries.", "es": "Un diseño profesional centrado en la confianza que convierte a los nuevos visitantes en consultas."}, {"i": 49, "en": "Plumbing & Drainage · Auckland, NZ", "es": "Fontanería y desagües · Auckland, NZ"}, {"i": 51, "en": "High-impact, animated, and built to convert — especially for emergency call-outs.", "es": "De alto impacto, animada y creada para convertir — especialmente en servicios de emergencia."}, {"i": 53, "en": "Restaurant · Mexico City", "es": "Restaurante · Ciudad de México"}, {"i": 55, "en": "Full-bleed editorial design for a Michelin-recognised taco restaurant in CDMX.", "es": "Diseño editorial a sangre completa para una taquería reconocida por Michelin en CDMX."}, {"i": 56, "en": "What we do", "es": "Qué hacemos"}, {"i": 57, "en": "Built around", "es": "Creado en torno a"}, {"i": 58, "en": "your business.", "es": "tu negocio."}, {"i": 59, "en": "\n        No generic templates. No cookie-cutter layouts. Every website is designed specifically for the business — built around its identity, customers, and goals.\n      ", "es": "\n        Sin plantillas genéricas. Sin diseños repetidos. Cada sitio web se diseña específicamente para el negocio — en torno a su identidad, sus clientes y sus objetivos.\n      "}, {"i": 60, "en": "\n        Mobile-friendly, fast-loading, and ready to work as hard as you do — that's not a separate service, it's the standard.\n      ", "es": "\n        Adaptado a móviles, de carga rápida y preparado para trabajar tan duro como tú — no es un servicio aparte, es el estándar.\n      "}, {"i": 61, "en": "Discuss your project", "es": "Hablemos de tu proyecto"}, {"i": 63, "en": "Website Design & Build", "es": "Diseño y Desarrollo Web"}, {"i": 64, "en": "A completely custom website designed around your business, your customers, and the impression you want to make. No templates. No shortcuts. Built from scratch.", "es": "Un sitio web totalmente a medida, diseñado en torno a tu negocio, tus clientes y la impresión que quieres causar. Sin plantillas. Sin atajos. Creado desde cero."}, {"i": 66, "en": "Website Redesign", "es": "Rediseño Web"}, {"i": 67, "en": "Your current website isn't doing you justice. We rebuild it properly — better first impression, clearer message, and a design that actually reflects your business.", "es": "Tu sitio web actual no te hace justicia. Lo reconstruimos como debe ser — mejor primera impresión, mensaje más claro y un diseño que refleje de verdad tu negocio."}, {"i": 69, "en": "Interactive Experiences", "es": "Experiencias Interactivas"}, {"i": 70, "en": "For businesses that want to genuinely stand out. Custom animations, interactions, and digital experiences that put your brand in a different category entirely.", "es": "Para empresas que quieren destacar de verdad. Animaciones, interacciones y experiencias digitales a medida que sitúan tu marca en una categoría completamente distinta."}, {"i": 71, "en": "How it works", "es": "Cómo funciona"}, {"i": 72, "en": "Simple process.", "es": "Proceso sencillo."}, {"i": 73, "en": "Exceptional result.", "es": "Resultado excepcional."}, {"i": 74, "en": "\n        Working with Carline Digital is straightforward. No jargon, no unnecessary complexity — just a clear path from brief to a website you're proud of.\n      ", "es": "\n        Trabajar con Carline Digital es sencillo. Sin jerga, sin complejidad innecesaria — solo un camino claro desde el encargo inicial hasta un sitio web del que te sientas orgulloso.\n      "}, {"i": 76, "en": "Discover", "es": "Descubrir"}, {"i": 77, "en": "We start by understanding your business, your customers, and what you need the website to achieve. No assumptions, no templates pulled out of a drawer.", "es": "Empezamos por entender tu negocio, tus clientes y todo lo que necesitas que consiga el sitio web. Sin suposiciones, sin plantillas sacadas de un cajón."}, {"i": 79, "en": "Design", "es": "Diseño"}, {"i": 80, "en": "A visual identity and layout built specifically for you. See your website before you commit — we show you the direction first and refine it until it's right.", "es": "Una identidad visual y una estructura creadas específicamente para ti. Ve tu sitio web antes de comprometerte — primero te mostramos la dirección y la refinamos hasta que quede perfecta."}, {"i": 82, "en": "Build", "es": "Desarrollo"}, {"i": 83, "en": "The approved design is built into a fast, clean, fully responsive website. Every detail is finished properly — no corners cut, no placeholder content left behind.", "es": "El diseño aprobado se convierte en un sitio web rápido, limpio y adaptable a cualquier pantalla. Cada detalle queda terminado — sin recortar calidad ni dejar contenido provisional."}, {"i": 85, "en": "Launch", "es": "Lanzamiento"}, {"i": 86, "en": "We handle the technical side of going live. And after launch, you're not left on your own — we're available for updates and ongoing support whenever you need it.", "es": "Nos encargamos de la publicación. Y después del lanzamiento no te dejamos solo — estamos disponibles para actualizaciones y soporte continuo cuando lo necesites."}, {"i": 87, "en": "Photograph coming soon", "es": "Fotografía próximamente"}, {"i": 89, "en": "Founder & Designer", "es": "Fundador y Diseñador"}, {"i": 90, "en": "About", "es": "Nosotros"}, {"i": 91, "en": "One studio.", "es": "Un estudio."}, {"i": 92, "en": "Full focus.", "es": "Toda la atención."}, {"i": 93, "en": "\n        Carline Digital is an independent web design studio focused on creating thoughtful, high-quality websites for businesses. Every project is designed and built directly by Edward — from the initial concept through to launch.\n      ", "es": "\n        Carline Digital es un estudio independiente de diseño web centrado en crear sitios web cuidados y de alta calidad para empresas. Cada proyecto es diseñado y desarrollado directamente por Edward — desde el concepto inicial hasta el lanzamiento.\n      "}, {"i": 94, "en": "\n        That means when you work with Carline Digital, you're working with the person who is actually designing and building your site. No handoffs, no intermediaries, no junior staff. Just direct communication and full attention on your project.\n      ", "es": "\n        Eso significa que cuando trabajas con Carline Digital, trabajas con la persona que realmente diseña y desarrolla tu sitio. Sin traspasos, sin intermediarios, sin personal junior. Solo comunicación directa y atención total a tu proyecto.\n      "}, {"i": 95, "en": "No templates. No shortcuts.", "es": "Sin plantillas. Sin atajos."}, {"i": 96, "en": "Every website is designed specifically for the business — its identity, its customers, its goals. The portfolio above shows what that looks like in practice.", "es": "Cada sitio web se diseña específicamente para el negocio — su identidad, sus clientes y sus objetivos. El portafolio muestra cómo se traduce eso en la práctica."}, {"i": 97, "en": "Direct. From start to finish.", "es": "Directo. De principio a fin."}, {"i": 98, "en": "You deal with Edward throughout the entire project — discovery, design, build, and launch. No handoffs, no account managers, no surprises.", "es": "Tratas con Edward durante todo el proyecto — descubrimiento, diseño, desarrollo y lanzamiento. Sin traspasos, sin gestores de cuenta, sin sorpresas."}, {"i": 99, "en": "\n        Available for new projects\n      ", "es": "\n        Disponible para nuevos proyectos\n      "}, {"i": 100, "en": "Ready to stand out?", "es": "¿Listo para destacar?"}, {"i": 101, "en": "Let's build a website that works as hard as you do.", "es": "Construyamos un sitio web que trabaje tan duro como tú."}, {"i": 102, "en": "\n    Start a project\n    ", "es": "\n    Iniciar un proyecto\n    "}, {"i": 103, "en": "Let's talk.", "es": "Hablemos."}, {"i": 104, "en": "Get in touch", "es": "Contacta"}, {"i": 105, "en": "Ready to build something ", "es": "¿Listo para crear algo "}, {"i": 106, "en": "worth seeing?", "es": "que merezca la pena ver?"}, {"i": 107, "en": "\n        Tell us a little about your business and what you're looking for. We'll get back to you quickly and have an honest conversation about what's possible.\n      ", "es": "\n        Cuéntanos un poco sobre tu negocio y lo que estás buscando. Te responderemos pronto y tendremos una conversación clara sobre lo que es posible.\n      "}, {"i": 108, "en": "\n        No commitment. No hard sell.\n      ", "es": "\n        Sin compromiso. Sin presión comercial.\n      "}, {"i": 109, "en": "Email", "es": "Correo electrónico"}, {"i": 111, "en": "Tell us about your project.", "es": "Cuéntanos sobre tu proyecto."}, {"i": 112, "en": "Name *", "es": "Nombre *"}, {"i": 113, "en": "Email *", "es": "Correo electrónico *"}, {"i": 114, "en": "Business", "es": "Empresa"}, {"i": 115, "en": "Message", "es": "Mensaje"}, {"i": 116, "en": "Send message", "es": "Enviar mensaje"}, {"i": 118, "en": "© 2026 Carline Digital. All rights reserved.", "es": "© 2026 Carline Digital. Todos los derechos reservados."}, {"i": 119, "en": "Work", "es": "Proyectos"}, {"i": 120, "en": "Services", "es": "Servicios"}, {"i": 121, "en": "About", "es": "Nosotros"}, {"i": 122, "en": "Contact", "es": "Contacto"}];
   const ATTR_MAP = [{"i": 5, "a": "content", "en": "Carline Digital is an independent website design studio that builds exceptional websites for established businesses.", "es": "Carline Digital es un estudio independiente de diseño web que crea sitios web excepcionales para empresas consolidadas."}, {"i": 29, "a": "aria-label", "en": "Open menu", "es": "Abrir menú"}, {"i": 88, "a": "alt", "en": "Auckland Plumber Drainlayer website screenshot", "es": "Captura del sitio web de Auckland Plumber Drainlayer"}, {"i": 103, "a": "alt", "en": "All Things Plumbing and Gas website screenshot", "es": "Captura del sitio web de All Things Plumbing & Gas"}, {"i": 118, "a": "alt", "en": "Cohen Electric Services website screenshot", "es": "Captura del sitio web de Cohen Electric Services"}, {"i": 133, "a": "alt", "en": "Fix and Flow Plumbing website screenshot", "es": "Captura del sitio web de Fix & Flow Plumbing"}, {"i": 148, "a": "alt", "en": "La Once Mil restaurant website screenshot", "es": "Captura del sitio web de La Once Mil"}, {"i": 288, "a": "placeholder", "en": "Your name", "es": "Tu nombre"}, {"i": 294, "a": "placeholder", "en": "Your business name", "es": "Nombre de tu empresa"}, {"i": 297, "a": "placeholder", "en": "Tell us a little about your project…", "es": "Cuéntanos un poco sobre tu proyecto…"}];
 
   function getTextNodes() {
@@ -1363,6 +1391,7 @@ function handleFormSubmit(e) {
     return Array.from(document.querySelectorAll('*')).filter(el =>
       !el.closest('#language-switcher') &&
       !el.closest('.project-preview-overlay') &&
+      !el.closest('.project-open-link') &&
       el.id !== 'bilingual-language-script' &&
       el.id !== 'bilingual-language-styles'
     );
@@ -1387,6 +1416,18 @@ function handleFormSubmit(e) {
       const active = btn.dataset.lang === target;
       btn.classList.toggle('active', active);
       btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+
+    document.querySelectorAll('.project-preview-overlay').forEach(overlay => {
+      const project = overlay.dataset.project || '';
+      overlay.dataset.label = target === 'es' ? 'Haz clic para interactuar' : 'Click to interact';
+      overlay.setAttribute('aria-label', target === 'es' ? `Activar vista previa de ${project}` : `Activate ${project} live website preview`);
+    });
+
+    document.querySelectorAll('.project-open-link').forEach(link => {
+      const project = link.dataset.project || '';
+      link.dataset.label = target === 'es' ? 'Abrir sitio' : 'Open site';
+      link.setAttribute('aria-label', target === 'es' ? `Abrir ${project} en una pestaña nueva` : `Open ${project} in a new tab`);
     });
   }
 
